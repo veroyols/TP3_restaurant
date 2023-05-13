@@ -1,5 +1,104 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300&display=swap');
+/* Defino variables */
+:root {
+    --color-principal:#555555;
+    --color-secundario:#ec7433;
+    --color-terciario:#f45c33; 
+    --color-fondo:#666666;
+    --color-texto:#f4f4f4;
+    --color-texto-secundario:#f6af89;
 
-body {
-    font-family: 'Raleway', sans-serif;
+    --color-fondo-body: rgb(204, 183, 162);
+    --color-fondo-oscuro: #333333;
+    --color-fondo-nav: #555555;
+    --color-fondo-nav-claro: #777777;
+    --color-letra-claro:#f8f8f8;
+    --color-letra-oscuro:#111111;
+    
 }
+/*Por defecto del browser*/
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+
+.body {
+    background-color: var(--color-fondo-claro);
+    max-width: 1920px;
+    background-color: var(--color-fondo-oscuro);
+}
+.logo {
+    float: left;
+    align-items: center;
+}
+
+    .header {
+        background-color: var(--color-fondo-oscuro);
+        color: var(--color-letra-claro);
+        padding: 2rem;
+        justify-content:left;
+        align-items: center;
+    }
+        .nav{
+            padding: 5rem 1rem;
+            background-color: var(--color-fondo-oscuro);
+            justify-content: end;
+            float: right;
+        }
+        .nav ul {
+            display: flex;
+            flex-direction: column;
+            list-style-type: none;
+            justify-content:space-around;
+            gap: 3rem;
+            
+        }
+        .nav ul li {
+            margin-right: 1rem;
+        }
+        .nav ul li a {
+            font-size: large;
+            text-decoration: none;
+            color: var(--color-letra-claro);
+            border-radius: 3px;
+            transition: background-color 4s;
+            padding: 0.3rem 1rem;
+        }
+        .nav ul li a:hover {
+            background-color: var(--color-fondo);
+        }
+
+    main {
+        max-width: 1920px;
+        max-height: 1080px;
+        background-image: url("./../images/mushroom.png");
+        padding: 2rem;
+        margin-left: 4rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+        section {
+            background-color: #f4f4f4;
+            padding: 2rem;
+            margin-bottom: 1rem;
+            margin-right: 1rem;
+            border: solid 1px var(--color-principal);
+            border-radius: 10px;
+        }
+        section:hover {
+            box-shadow: 1px 5px 10px var(--color-principal);
+            transform:scale(1.03);
+            justify-content: space-between;
+        }
+
+    footer {
+        background-color: var(--color-principal);
+        color: var(--color-texto);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 1rem;
+    }
