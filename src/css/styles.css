@@ -93,6 +93,10 @@
             transform:scale(1.03);
             justify-content: space-between;
         }
+        .image {
+            max-width: 100%;
+            height: auto;
+          }
 
     footer {
         background-color: var(--color-principal);
