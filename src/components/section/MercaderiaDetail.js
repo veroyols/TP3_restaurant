@@ -12,7 +12,7 @@ const MercaderiaDetail = (data) => {
             <br>
             <p class="mercaderiaDetailText">Precio $${data.precio}</p>
         </div>
-        <button>Cerrar</button>
+        <button class="mercaderia__close">Cerrar</button>
     </section>
     `
 }

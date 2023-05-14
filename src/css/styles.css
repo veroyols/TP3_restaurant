@@ -119,10 +119,19 @@
             .mercaderia__foot p, button p{
                 font-size: small;
             }
+            .background {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7); 
+            }
+              
         .mercaderiaDetail {
             background-color: #f4f4f4;
             top: 160px;
-            position:absolute;
+            position:fixed;
             margin-left: 4rem;
             max-height: 76%;
             max-width: 76%;
@@ -130,7 +139,9 @@
             grid-template-columns: 5fr 5fr 1fr;
             border-radius: 30px;
             padding: 50px 40px;
-            align-items: center;    
+            align-items: center;
+            z-index: 2; /* Colocar la capa por debajo de la sección mercaderiaDetail */
+
         }
         .mercaderiaDetail div .mercaderiaDetailText {
             font-size: 1.2rem;
@@ -151,7 +162,6 @@
         .mercaderiaDetail button:hover {
             background-color:var(--color-texto-secundario);
             transition: background-color 4s;
-
         }
 
     footer {

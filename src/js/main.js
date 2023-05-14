@@ -24,6 +24,8 @@ const onListItemClick = (elements) => {
       element.addEventListener('click', () => onClickViewButton(element.id))
     } else if (element.classList.contains('mercaderia__add')) {
       element.addEventListener('click', () => onClickAddButton(element.id))
+    } else if (element.classList.contains('mercaderia__close')) {
+      element.addEventListener('click', () => onClickCloseButton())
     }
   });
 }
@@ -32,10 +34,20 @@ const onListItemClick = (elements) => {
 const onClickViewButton = async (id) => {
   let mercaderia = await getMercaderia(id);
   let detail = document.getElementById("detailProduct");
-  main.innerHTML = "";
+  let background = document.getElementById("background");
+  background.className = "background";
+  //main.innerHTML = "";
   detail.innerHTML = MercaderiaDetail(mercaderia);
-
-  alert(`View element with id ${id}`)
+  //dejo el boton close
+  onListItemClick(document.querySelectorAll('.mercaderia__close'))
+}
+//CERRAR DETALLE DEL PRODUCTO
+const onClickCloseButton = async () => {
+  alert("close")
+  let section = document.getElementById("detailProduct");
+  section.innerHTML ="";
+  let background = document.getElementById("background");
+  background.className = "";
 }
 //AGREGAR PRODUCTO
 const onClickAddButton = (id) => {
