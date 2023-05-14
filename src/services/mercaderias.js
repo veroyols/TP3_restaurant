@@ -36,7 +36,7 @@ const postMercaderia = async (body) => {
 
 const getMercaderia = async (id) => { 
     let result = []
-    let response = await fetch(URL+'?'+id)
+    let response = await fetch(URL+'/'+id)
     if(response.ok){
         result = await response.json()
     }
@@ -106,19 +106,7 @@ POST
     "imagen": "img"
 }
 
-GET(id)
-{
-    "id": 30,
-    "nombre": "Copa Helada",
-    "tipo": {
-        "id": 10,
-        "descripcion": "Postres"
-    },
-    "precio": 800,
-    "ingredientes": "Helado, salsa de chocolate y crema. ",
-    "preparacion": "Colocar el helado en una copa y cubrir con la salsa de chocolate. Agregar crema batida.",
-    "imagen": "http://drive.google.com/uc?export=view&id=1wq625i2tDiHzQRVGrU_i3hYJpzuPwryc"
-}
+
 
 
 */
