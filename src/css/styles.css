@@ -46,6 +46,7 @@
             background-color: var(--color-fondo-oscuro);
             justify-content: end;
             float: right;
+            position: relative;
         }
         .nav ul {
             display: flex;
@@ -68,30 +69,36 @@
         }
         .nav ul li a:hover {
             background-color: var(--color-fondo);
+            cursor:pointer;
         }
 
     main {
         max-width: 1920px;
         max-height: 1080px;
-        background-image: url("./../images/mushroom.png");
         padding: 2rem;
         margin-left: 4rem;
+        margin-bottom: 37rem;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        
     }
-        section {
+    .mercaderia {
+            justify-content:left;
+            align-items: center;
             background-color: #f4f4f4;
-            padding: 2rem;
+            padding: 0.5rem;
             margin-bottom: 1rem;
-            margin-right: 1rem;
-            border: solid 1px var(--color-principal);
+            margin-right: 0.5rem;
+            margin-left: 0.5rem;
             border-radius: 10px;
         }
-        section:hover {
-            box-shadow: 1px 5px 10px var(--color-principal);
-            transform:scale(1.03);
+        .mercaderia:hover {
+            box-shadow: 0px 0px 25px 10px var(--color-fondo-oscuro);
+            box-decoration-break: clone;
+            transition: background-color 4s;
+            transform:scale(1.2);
             justify-content: space-between;
+            cursor:pointer;
         }
         .image {
             max-width: 100%;
@@ -105,4 +112,7 @@
         flex-direction: column;
         align-items: center;
         padding-top: 1rem;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
     }

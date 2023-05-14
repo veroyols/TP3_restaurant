@@ -1,9 +1,10 @@
-export default function Mercaderia (data) {
+const Mercaderia = (data) => {
     return `
-    <section id="${data.id}">
-        <h2 class="title">${data.tipo.descripcion}</h2>
-        <p class="text">${data.nombre}</p>
+    <section class="mercaderia" id="${data.id}">
+        <p >${data.nombre}</p>
         <img class="image" src="${data.imagen}" alt="Imagen del plato">
+        <p >${data.tipo.descripcion}</p>
     </section>
     `
 }
+export default Mercaderia; 
