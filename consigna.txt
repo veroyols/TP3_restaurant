@@ -1,5 +1,16 @@
 Parte 3
+-------------------------------------------------------------------------------------
+bug backend: el post no deberia insertar comandas sin mercaderia
+solve:
+bool count = body.mercaderias.Count != 0;
+                bool formaEntrega = body.formaEntrega > 0 && body.formaEntrega <= 3;
 
+                if (count && formaEntrega)
+                {
+                    var response = await _serviceComanda.InsertComanda(body);
+                    return new JsonResult(response) { StatusCode = 201 }; 
+                }
+-------------------------------------------------------------------------------------
 Los criterios de aceptación son:
 1. Interfaz web donde se muestran todas las opciones de menú que cuenta el restaurante.
 mercaderiaTipo

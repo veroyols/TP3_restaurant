@@ -4,6 +4,7 @@ import { getMercaderias, getMercaderia } from "../services/mercaderias.js";
 import { postComanda } from "../services/comandas.js"
 import ComandaCreate from "../components/section/ComandaCreate.js";
 import FormaEntrega from "../components/section/FormaEntrega.js";
+import ComandaTicket from "../components/section/ComandaTicket.js";
 
 //CARRITO
 var selectedProduct = []; //['']
@@ -16,6 +17,7 @@ const render = async () => {
         main.innerHTML += Mercaderia(mercaderias[i], selectedProduct);
     }
     onListItemClick(document.querySelectorAll('.mercaderia'))
+    onListItemClick(document.querySelectorAll('.selectorType'))
     onListItemClick(document.querySelectorAll('.mercaderia__view'))
     onListItemClick(document.querySelectorAll('.mercaderia__add'))
     onListItemClick(document.querySelectorAll('.selectedProduct'))
@@ -25,9 +27,7 @@ window.onload = render;
 //CLICK
 const onListItemClick = (elements) => {
     elements.forEach(element => {
-        if (element.classList.contains('mercaderia')) {
-            element.addEventListener('mouseover', () => onMouseOver())
-        } else if (element.classList.contains('mercaderia__view')) {
+        if (element.classList.contains('mercaderia__view')) {
             element.addEventListener('click', () => onClickViewButton(element.id))
         } else if (element.classList.contains('mercaderia__add')) {
             element.addEventListener('click', () => onClickAddButton(element.id))
@@ -37,9 +37,11 @@ const onListItemClick = (elements) => {
             element.addEventListener('click', () => onClickPreviewCommand())
         } else if (element.classList.contains('modal__next')) { 
             element.addEventListener('click', () => onClickNextButton()) 
-          } else if (element.classList.contains('modal__finish')) { 
-            element.addEventListener('click', () => onClickCreateButton()) 
-        }        
+        } else if (element.classList.contains('modal__finish')) { 
+          element.addEventListener('click', () => onClickCreateButton()) 
+        } else if (element.classList.contains('selectorType')) { 
+          element.addEventListener('click', () => onClickSelectorType(element.value)) 
+        }
     });
 }
 
@@ -64,9 +66,6 @@ const onClickAddButton = (id) => {
     //contador en nav
     let counter = document.getElementById("counter");
     counter.textContent = `(${selectedProduct.length})`;
-}
-//MOUSE OVER
-const onMouseOver = async (id) => {
 }
 
 //DETALLE DEL PRODUCTO
@@ -109,10 +108,8 @@ const onClickPreviewCommand = async () => {
 }
 //NEXT -> FormaEntrega
 const onClickNextButton = async () => {
-    alert("next")
     let section = document.getElementById("modalDetail");
-    section.innerHTML = '';
-    section.innerHTML = await FormaEntrega([{id: "product.id", nombre: "product.nombre", precio: "product.precio", imagen: "product.imagen"}])
+    section.innerHTML = await FormaEntrega()
 
     onListItemClick(document.querySelectorAll('.modal__close'))
     onListItemClick(document.querySelectorAll('.modal__finish'))
@@ -121,11 +118,9 @@ const onClickNextButton = async () => {
 const onClickCreateButton = async () => {
     console.log('creando comanda')
     const delivery = document.querySelectorAll('.delivery');
-    console.log(delivery)
     let formaEntrega;
     for (let i = 0; i < delivery.length; i++) {
         const op = delivery[i];
-        console.log(op)
         if (op.checked) {
             formaEntrega = op.value;
         }  
@@ -136,14 +131,30 @@ const onClickCreateButton = async () => {
         mercaderias: selectedProduct,
         formaEntrega: formaEntrega,
     }
-    console.log(body)
-
     let response = await postComanda(body)
 
-    console.log(response)
-
     let section = document.getElementById("modalDetail");
-    section.innerHTML ="";
-    let background = document.getElementById("background");
-    background.className = "";
+    section.innerHTML = await ComandaTicket(response)
+    onListItemClick(document.querySelectorAll('.modal__close'))
 }
+//SELECTOR TYPE
+const onClickSelectorType = async (id) => { //recibe el value y lo imprime
+  let main = document.getElementById("allProducts");
+  let mercaderias = await getMercaderias(id);
+  main.innerHTML =""
+  const title = document.createElement('h2');
+  title.classList.add('title');
+  title.textContent = "sectionData.title";
+  main.appendChild(title)
+for (let i = 0; i < mercaderias.length; i++) {
+      main.innerHTML += Mercaderia(mercaderias[i], selectedProduct);
+  }
+/*  onListItemClick(document.querySelectorAll('.mercaderia'))
+  onListItemClick(document.querySelectorAll('.mercaderia__view'))
+  onListItemClick(document.querySelectorAll('.mercaderia__add'))
+  onListItemClick(document.querySelectorAll('.selectedProduct'))
+
+  //contador en nav
+  let counter = document.getElementById("counter");
+  counter.textContent = `(${selectedProduct.length})`;
+*/}

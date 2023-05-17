@@ -23,10 +23,7 @@ const postComanda = async (body) => {
         }*/
     }
     let response = await fetch(URL, init)
-    if(response.ok){
-        result = await response.json()
-    }
-    return result
+    return await response.json()
 }
 
 const getComanda = async (id) => { //8a34d04a-6e3e-4418-84c5-39a8aa94e996
