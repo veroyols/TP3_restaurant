@@ -9,14 +9,21 @@
     <title>MENU</title>
     <!-- css-->
     <link rel="stylesheet" href="../../src/css/styles.css">    
+    <!-- icons
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+        <link rel="stylesheet" href="https://kit.fontawesome.com/46300445ea.js" crossorigin="anonymous"/>
+    -->
+    <script src="https://kit.fontawesome.com/46300445ea.js" crossorigin="anonymous"></script>      
+
+ 
 </head>
 <body class="body">
     <header class="header">
-        <img class="logo" src="../../src/images/logo.png" alt="Logo del restaurant." width="30">
+        <!--img class="logo" src="../../src/images/logo.png" alt="Logo del restaurant." width="30"-->
         <h1>menu</h1> 
         <nav class="nav">
             <ul>
-                <li id="selectedProduct">MI PEDIDO<p id="counter"></p></li>            
+                <li class="selectedProduct">VER MI PEDIDO<p id="counter"></p></li>            
                 <li><a href="#entrada">ENTRADA</a></li>            
                 <li><a href="#minutas">MINUTAS</a></li>
                 <li><a href="#pastas">PASTAS</a></li>
@@ -30,13 +37,17 @@
             </ul>
         </nav>
     </header>
-    <div id="background"></div>
-    <main id="main">
-        <!-- SPA: Renderiza cuando se carga la pagina -->
+    <main>
+        <section id="allProducts">
+            <!-- SPA: Renderiza cuando se carga la pagina -->
+        </section>
+        <div id="background">
+            <!--capa gris entre main y modals -->
+        </div>
+        <section id="modalDetail">
+            <!-- Modal Detalle Mercaderia y crear comanda -->
+        </section>
     </main>
-    <section id="detailProduct">
-        <!-- Renderiza cuando hago click -->
-    </section>
     <footer class="footer">
         <p class="footer__text">&copy;2023 | Proyecto de Software | 1er cuatrimestre</p>
         <!--img class="footer__logo" src="../../src/images/logo.png" alt="Logo del restaurant." width="50"-->

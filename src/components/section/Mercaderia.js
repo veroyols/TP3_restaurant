@@ -1,4 +1,6 @@
-const Mercaderia = (data) => {
+const Mercaderia = (data, selectedProduct) => {
+    let buttonText = selectedProduct.includes(data.id) ? 'Quitar' : 'Agregar';
+
     return `
     <section class="mercaderia" id="${data.id}">
         <div class="mercaderia__view" id="${data.id}">

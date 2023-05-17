@@ -24,6 +24,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    
     /*
     font-family: 'Roboto', sans-serif;
     font-family: 'Nunito', sans-serif;    
@@ -31,11 +32,9 @@
 }
 
 .body {
-    background-color: var(--color-fondo-claro);
     max-width: 1920px;
     max-height: 1080px;
-
-    background-color: var(--color-fondo-oscuro);
+    background-color: var(--color-letra-oscuro);
 }
 .logo {
     float: left;
@@ -43,7 +42,7 @@
 }
 
     .header {
-        background-color: var(--color-fondo-oscuro);
+        background-color: var(--color-letra-oscuro);
         color: var(--color-letra-claro);
         padding: 2rem;
         justify-content:left;
@@ -51,7 +50,7 @@
     }
         .nav{
             padding: 5rem 1rem;
-            background-color: var(--color-fondo-oscuro);
+            background-color: var(--color-letra-oscuro);
             justify-content: end;
             float: right;
             position: relative;
@@ -69,8 +68,6 @@
         }
         .nav ul li {
             margin-right: 1rem;
-        }
-        .nav ul li a {
             font-size: large;
             text-decoration: none;
             color: var(--color-letra-claro);
@@ -78,17 +75,19 @@
             transition: background-color 4s;
             padding: 0.3rem 1rem;
         }
-        .nav ul li a:hover {
+        .nav ul li a {
+        }
+        .nav ul li:hover {
             background-color: var(--color-fondo);
             cursor:pointer;
         }
 
-    main {
+    #allProducts {
         padding: 2rem;
         margin-left: 4rem;
-        margin-bottom: 45rem;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        border-radius: 15;
     }
         /* Componente Mercaderia*/
         .mercaderia {
@@ -127,7 +126,18 @@
                 height: 100%;
                 background-color: rgba(0, 0, 0, 0.7); 
             }
-              
+            .mercaderia__add {
+                border-style: hidden;
+                cursor:pointer;
+                border-radius: 5px;
+                font-size: medium;
+            }
+            .mercaderia__add:hover {
+                background-color:var(--color-texto-secundario);
+                transition: background-color 4s;
+            }
+
+        /*MODAL DE MERCADERIA*/
         .mercaderiaDetail {
             background-color: #f4f4f4;
             top: 160px;
@@ -140,15 +150,13 @@
             border-radius: 30px;
             padding: 50px 40px;
             align-items: center;
-            z-index: 2; /* Colocar la capa por debajo de la sección mercaderiaDetail */
-
+            z-index: 2; 
         }
         .mercaderiaDetail div .mercaderiaDetailText {
             font-size: 1.2rem;
             font-weight:bold;
             margin-left: 40px;
         }
-
         .mercaderiaDetail div .mercaderiaDetailRight {
             text-align: right;
         }            
@@ -163,6 +171,60 @@
             background-color:var(--color-texto-secundario);
             transition: background-color 4s;
         }
+        /*MODAL DE COMANDA*/
+        .comandaDetail {
+            background-color: #f4f4f4;
+            width: 50rem;
+            position:absolute;
+            top: 160px;
+            left: 0; 
+            right: 0;
+            margin: auto;            
+            border-radius: 30px;
+            padding: 50px 40px;
+            align-items: center;
+            align-content: center;
+            z-index: 2; 
+        }
+        .textRight {
+            text-align: right;
+        }
+        .comandaDetail table {
+            text-align:center;
+            width: 100%;
+        }
+        .comandaDetail .content {
+            background-color: #f4f4f4;
+            border-radius: 30px;
+            padding: 50px 40px;
+            align-items: center;
+            align-content: center;
+            
+            
+        }
+        .comandaDetail__buttons {
+            display: grid;
+            grid-template-columns: 8fr 2fr  2fr;
+            text-align: center;
+        }
+        .comandaDetail__buttons h3 {
+            align-items: center;
+            align-content: center;
+        }
+
+        .comandaDetail__buttons button {
+            border-style: hidden;
+            cursor:pointer;
+            border-radius: 5px;
+            font-size: medium;
+        }
+        .comandaDetail__buttons button:hover {
+            background-color:var(--color-texto-secundario);
+            transition: background-color 4s;
+        }
+
+
+        
 
     footer {
         background-color: var(--color-principal);
