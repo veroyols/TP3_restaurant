@@ -1,10 +1,10 @@
 
 const ComandaCreate = async (list) => {
+    console.log(list)
     let total = 0;
     for (let i = 0; i < list.length; i++) {
         total += list[i].precio;
     }
-    let delivery = ['Salon', 'Delivery', 'Pedidos Ya']
 
     return  `
     <article class="modalDetail">
@@ -27,7 +27,7 @@ const ComandaCreate = async (list) => {
                 </div>
                 <div class="comandaDetail__buttons">
                     <h3>Total a pagar $${total}</h3>
-                    <button class="modal__close">Siguiente</button>
+                    <button class="modal__next">Siguiente</button>
                     <button class="modal__close">Volver</button>
                 </div>
         </div>    
@@ -36,17 +36,3 @@ const ComandaCreate = async (list) => {
 }
 
 export default ComandaCreate; 
-/*        <h2 class="mercaderiaDetailRight">Forma de Pago</h2>
-        
-        <table>
-            <tbody>
-            ${delivery.map(element =>  { return `
-                        <tr>
-                            <td>${element}</td>
-                        </tr>
-                    `}).join("")}
-
-            </tbody>
-        </table>
-        <button class="modal__close">Cerrar</button>
-*/

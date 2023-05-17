@@ -4,7 +4,7 @@ const Mercaderia = (data, selectedProduct) => {
     return `
     <section class="mercaderia" id="${data.id}">
         <div class="mercaderia__view" id="${data.id}">
-            <h5>${data.nombre}</h5>
+            <h3>${data.nombre}</h3>
             <img class="mercaderia__image" src="${data.imagen}" alt="Imagen del plato">
         </div>
         <div class="mercaderia__foot">
