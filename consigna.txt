@@ -12,21 +12,20 @@ bool count = body.mercaderias.Count != 0;
                 }
 -------------------------------------------------------------------------------------
 Los criterios de aceptación son:
-1. Interfaz web donde se muestran todas las opciones de menú que cuenta el restaurante.
-mercaderiaTipo
-2. El usuario puede acceder al detalle de la mercadería donde se debe visualizar toda la información que esta presenta.
-Mercaderia/get(id)
-3. Se debe permitir que el usuario arme la comanda con la mercadería que desea y elegir la forma de entrega.
-Comanda/post
+1.ok Interfaz web donde se muestran todas las opciones de menú que cuenta el restaurante. 
+2.ok El usuario puede acceder al detalle de la mercadería donde se debe visualizar toda la información que esta presenta.
+3.OK Se debe permitir que el usuario arme la comanda con la mercadería que desea y elegir la forma de entrega.
 4. El usuario puede realizar búsquedas, filtrados y ordenamiento de la mercadería.
-Mercaderia/get (name, tipo, orden)
 5. La app debe tener un sector donde se visualicen todas las comandas del día.
-Comanda/get
 
+*Mercaderia/get (name, tipo, orden)
+*Mercaderia/get(id)
 *Mercaderia/post
 *Mercaderia/put
 *Mercaderia/delete
+*Comanda/get
 *Comanda/get(id)
+*Comanda/post
 
 Consigna:
 Realizar una aplicación de frontend utilizando HTML, CSS y JS que cumpla con los requerimientos del cliente.
@@ -88,3 +87,5 @@ const render = () => {
         main.appendChild(section);
     })
 }
+
+

@@ -1,4 +1,4 @@
-const URL = 'https://localhost:7137/api/Comanda';
+const URL = 'https://localhost:7137/api/v1/Comanda';
 
 const getComandas = async (date) => { //5/14/23 o 5-14-23 req
     let result = []

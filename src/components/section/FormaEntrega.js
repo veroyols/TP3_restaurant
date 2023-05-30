@@ -1,6 +1,19 @@
 const FormaEntrega = async () => {
 
-    const delivery = [{name: 'Salon', value: '1'}, {name: 'Delivery', value: '2'}, {name: 'Pedidos Ya', value: '3'}]
+    const delivery = [
+        {
+            name: 'Salon', 
+            value: '1'
+        }, 
+        {
+            name: 'Delivery', 
+            value: '2'
+        }, 
+        {
+            name: 'Pedidos Ya', 
+            value: '3'
+        }
+    ]
 
     return  `
     <article class="mercaderia__view">
@@ -18,7 +31,7 @@ const FormaEntrega = async () => {
                 </div>
                 <div class="comandaDetail__buttons">
                     <button class="modal__finish">Finalizar</button>
-                    <button class="modal__close">Volver</button>
+                    <button id="modal__close">Volver</button>
                 </div>
         </div>    
     </article>

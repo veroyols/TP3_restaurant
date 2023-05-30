@@ -1,113 +1,132 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+
 /* Defino variables */
 :root {
-    --color-principal:#555555;
-    --color-secundario:#ec7433;
-    --color-terciario:#f45c33; 
-    --color-fondo:#666666;
-    --color-texto:#f4f4f4;
-    --color-texto-secundario:#f6af89;
+    --nav-icons:#f8f8f8;
+    --nav-icons-hover: #333333;
+    --body-background:#111111;
+    --header-title:#f8f8f8;
+    --nav-counter: #f6af89;
+    --modal: /* rgb(201, 201, 213);*/#f4f4f4; 
+    --mercaderia-shadow: #031222;
+    --hover-close:#c8c1c1;
+    --footer:#1c1b1b;
+    --button-add:#dcd5d1;
+    --button-add-hover:#f6af89;
+    --pinterest-color: #cb2028;
+    --red-color: #da0909;
 
-    --color-fondo-body: rgb(204, 183, 162);
-    --color-fondo-oscuro: #333333;
-    --color-fondo-nav: #555555;
-    --color-fondo-nav-claro: #777777;
-    --color-letra-claro:#f8f8f8;
-    --color-letra-oscuro:#111111;
-    
-/**************************************/
-    --color-button-add:#f2e1d8;
-    --color-button-add-hover:#f6af89;
-    --color-button-selected: #9beb92;
 }
 /*Por defecto del browser*/
-*{
+* {
     margin:0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    
-    /*
-    font-family: 'Roboto', sans-serif;
-    font-family: 'Nunito', sans-serif;    
-    */
 }
-
-.body {
+td {
+    font-size: large;
+    color: var(--footer);
+    font-weight: bold;
+    
+}
+html {
     max-width: 1920px;
     max-height: 1080px;
-    background-color: var(--color-letra-oscuro);
+    background-color: var(--body-background);
 }
-.logo {
-    float: left;
-    align-items: center;
+/* #region HEADER Y NAV */
+.header {
+    margin: 2rem 2rem 2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items:baseline;
 }
-
-    .header {
-        background-color: var(--color-letra-oscuro);
-        color: var(--color-letra-claro);
-        padding: 2rem;
-        justify-content:left;
-        align-items: center;
+    .title {
+        color: var(--header-title);
+        font-family: 'Nanum Myeongjo', serif;
+        font-size: 50px;
     }
-        .nav{
-            padding: 5rem 1rem;
-            background-color: var(--color-letra-oscuro);
-            justify-content: end;
-            float: right;
-            position: relative;
-        }
-        #counter {
-            display:inline-block;
-        }
-        .nav ul {
+    .nav {
+        /*padding: 5rem 1rem;
+        background-color: var(--color-letra-oscuro);
+        float: right;
+        position: relative;*/
+    }
+    .nav ul {
+        display: flex;
+        list-style-type: none;
+    }
+
+    .nav ul li {
+        margin: 1rem;
+        font-size: large;
+        text-decoration: none;
+        color: var(--nav-icons);
+        border-radius: 3px;
+        transition: background-color 4s;
+        padding: 0.5rem 1rem 0.1rem 1rem;
+    }
+    .nav ul li:hover {
+        background-color: var(--nav-icons-hover);
+        cursor:pointer;
+    }
+    #counter {
+        color: var(--nav-counter);
+        display:inline-block;
+    }
+/* #endregion */
+
+/* #region TODOS LOS PRODUCTOS */
+    #allProducts {
+        padding: 2rem;
+        margin: 0rem 4rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        border-radius: 15;
+    }
+    /*
+    .filterType {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        
+        background-color: #f4f4f4;
+        top: 160px;
+        position:fixed;
+        margin-left: 4rem;
+        max-height: 76%;
+        max-width: 76%;
+        border-radius: 30px;
+        padding: 50px 40px;
+        align-items: center;
+        z-index: 2; 
+    }
+    */
+        /* Componente Card Mercaderia*/
+        .mercaderia {
             display: flex;
             flex-direction: column;
-            list-style-type: none;
-            justify-content:space-around;
-            gap: 3rem;
             
+            justify-content: space-between;
+            background-color: var(--modal);
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            margin-right: 0.5rem;
+            margin-left: 0.5rem;
+            border-radius: 10px;
         }
-        .nav ul li {
-            margin-right: 1rem;
-            font-size: large;
-            text-decoration: none;
-            color: var(--color-letra-claro);
-            border-radius: 3px;
-            transition: background-color 4s;
-            padding: 0.3rem 1rem;
-        }
-        .nav ul li a {
-        }
-        .nav ul li:hover {
-            background-color: var(--color-fondo);
+
+        .open_detail{
             cursor:pointer;
         }
 
-    #allProducts {
-        padding: 2rem;
-        margin-left: 4rem;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        border-radius: 15;
-    }
-        /* Componente Mercaderia*/
-        .mercaderia {
-                justify-content:left;
-                align-items: center;
-                background-color: #f4f4f4;
-                padding: 0.5rem;
-                margin-bottom: 1rem;
-                margin-right: 0.5rem;
-                margin-left: 0.5rem;
-                border-radius: 10px;
-            }
             .mercaderia:hover {
-                box-shadow: 0px 0px 25px 10px var(--color-fondo-oscuro);
+                box-shadow: 0px 0px 25px 10px var(--mercaderia-shadow);
                 transform:scale(1.2);
-                cursor:pointer;
             }
             .mercaderia__image {
                 max-width: 100%;
@@ -115,142 +134,172 @@
             }
             .mercaderia__foot {
                 display: flex;
-                flex-direction: column;
-                list-style-type: none;
-                justify-content:space-around;
-            }
-            .mercaderia__foot p, button p{
-                font-size: small;
-            }
-            .background {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.7); 
+                justify-content: space-between;
+                align-items: center;
             }
             .mercaderia__add {
-                margin: 7px 5px;
-                padding: 7px 0px;
-                background-color:var(--color-button-add);
+                margin: 7px;
+                padding: 7px;
+                background-color:var(--button-add);
                 border-style: hidden;
                 cursor:pointer;
                 border-radius: 5px;
                 font-size: medium;
+                align-items: center;
+                display: flex;
             }
-            .mercaderia__add:hover {
-                background-color:var(--color-button-add-hover);
+            .mercaderia__add:hover , .mercaderia__add.buttonNonSelected:hover{
+                background-color:green;
                 transition: background-color 4s;
-            }
-            .buttonNonSelected{
-                background-color: var(--color-button-selected);
-            }
-            .buttonNonSelected:hover {
-                background-color:var(--color-button-add-selected-hover);
-                transition: background-color 4s;
-            }
-            .buttonSelected{
-                background-color: var(--color-button-add);
-            }
-            .buttonSelected:hover {
-                background-color:var(--color-button-add-non-selected-hover);
-                transition: background-color 4s;
-            }
+            }              
+             
 
-        /*MODAL DE MERCADERIA*/
-        .mercaderiaDetail {
-            background-color: #f4f4f4;
-            top: 160px;
-            position:fixed;
-            margin-left: 4rem;
-            max-height: 76%;
-            max-width: 76%;
-            display: grid;
-            grid-template-columns: 5fr 5fr 1fr;
-            border-radius: 30px;
-            padding: 50px 40px;
-            align-items: center;
-            z-index: 2; 
-        }
-        .mercaderiaDetail div .mercaderiaDetailText {
-            font-size: 1.2rem;
-            font-weight:bold;
-            margin-left: 40px;
-        }
-        .mercaderiaDetail div .mercaderiaDetailRight {
-            text-align: right;
-        }            
-        .mercaderiaDetail button {
-            background-color:var(--color-button-add);
-            align-self: end;
-            border-style: hidden;
-            cursor:pointer;
-            border-radius: 5px;
-            font-size: medium;
-        }
-        .mercaderiaDetail button:hover {
-            background-color:var(--color-button-add-hover);
-            transition: background-color 4s;
-        }
-        /*MODAL DE COMANDA*/
-        .comandaDetail {
-            background-color: #f4f4f4;
-            width: 50rem;
-            position:absolute;
-            top: 160px;
-            left: 0; 
-            right: 0;
-            margin: auto;            
-            border-radius: 30px;
-            padding: 50px 40px;
-            align-items: center;
-            align-content: center;
-            z-index: 2; 
-        }
-        .textRight {
-            text-align: right;
-        }
-        .comandaDetail table {
-            text-align:center;
-            width: 100%;
-        }
-        .comandaDetail .content {
-            background-color: #f4f4f4;
-            border-radius: 30px;
-            padding: 50px 40px;
-            align-items: center;
-            align-content: center;
-            
-            
-        }
-        .comandaDetail__buttons {
-            display: grid;
-            grid-template-columns: 8fr 2fr  2fr;
-            text-align: center;
-        }
-        .comandaDetail__buttons h3 {
-            align-items: center;
-            align-content: center;
-        }
+            .mercaderia__add.buttonNonSelected {
+                background-color: var(--button-add);
+            }
+              
+              .mercaderia__add.buttonSelected {
+                background-color: green;
+              }
+              
+              .mercaderia__add.buttonSelected:hover {
+                background-color: red;
+                transition: background-color 3s;
+              }
 
-        .comandaDetail__buttons button {
-            border-style: hidden;
-            cursor:pointer;
-            border-radius: 5px;
-            font-size: medium;
-        }
-        .comandaDetail__buttons button:hover {
-            background-color:var(--color-texto-secundario);
-            transition: background-color 4s;
-        }
+/* #endregion */
+
+/* #region BACKGROUND */
+    .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7); 
+    }
+/* #endregion */
+
+/* #region MODAL DETALLE DE MERCADERIA */
+    .mercaderiaDetail {
+        background-color: #f4f4f4;
+        top: 160px;
+        position:fixed;
+        margin: 0rem 20rem;
+        border-radius: 30px;
+        padding: 50px 40px;
+        z-index: 2; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .mercaderiaDetail i {
+        align-self: start;
+        cursor: pointer;
+    }
+    .mercaderiaDetail div .mercaderiaDetailText {
+        font-size: 1.2rem;
+        font-weight:bold;
+        margin-left: 40px;
+    }
+    .mercaderiaDetail div .mercaderiaDetailRight {
+        text-align: right;
+    }            
+    .mercaderiaDetail button {
+        background-color:var(--button-add);
+        align-self: end;
+        border-style: hidden;
+        cursor:pointer;
+        border-radius: 5px;
+        font-size: medium;
+    }
+    .mercaderiaDetail button:hover {
+        background-color:var(button-add-hover);
+        transition: background-color 4s;
+    }
+
+/* #endregion */
+
+/* #region MODAL DE COMANDA*/
+    .comandaDetail {
+        background-color: #f4f4f4;
+        width: 50rem;
+        position:absolute;
+        top: 160px;
+        left: 0; 
+        right: 0;
+        margin: auto;            
+        border-radius: 30px;
+        padding: 50px 40px;
+        align-items: center;
+        align-content: center;
+        z-index: 2; 
+    }
+    .textRight {
+        text-align: right;
+    }
+    .comandaDetail table {
+        text-align:center;
+        width: 100%;
+    }
+    .comandaDetail .content {
+        background-color: #f4f4f4;
+        border-radius: 30px;
+        padding: 50px 40px;
+        align-items: center;
+        align-content: center;
+    }
+    .comandaDetail__buttons {
+        display: grid;
+        grid-template-columns: 8fr 2fr  2fr;
+        text-align: center;
+    }
+    .comandaDetail__buttons h3 {
+        align-items: center;
+        align-content: center;
+    }
+
+    .comandaDetail__buttons button {
+        border-style: hidden;
+        cursor:pointer;
+        border-radius: 5px;
+        font-size: medium;
+        background-color: var(--nav-counter);
+        padding: 0rem 2rem;
+        margin: 0rem 1rem;
+        font-weight: 700;
+
+    }
+    .comandaDetail__buttons button:hover {
+        background-color:var(--hover-close);
+        transition: background-color 4s;
+    }
+
+/* #endregion */
+
+/* #region MODAL SEARCHER*/
+    .searcher {
+        background-color: #f4f4f4;
+        top: 160px;
+        width: 50rem;
+        position:absolute;
+        left: 0; 
+        right: 0;
+        margin: auto;            
+        border-radius: 30px;
+        padding: 50px 40px;
+        z-index: 2; 
 
 
-        
 
+
+    }
+/* #endregion */
+
+/* #region FOOTER */
     footer {
-        background-color: var(--color-principal);
-        color: var(--color-texto);
+        color: var(--header-title);
+        background-color: var(--footer);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -258,5 +307,5 @@
         position:relative;
         bottom: 0;
         width: 100%;
-        
     }
+/* #endregion */

@@ -1,6 +1,6 @@
-const URL = 'https://localhost:7137/api/Mercaderia'
+const URL = 'https://localhost:7137/api/v1/Mercaderia'
 
-const getMercaderias = async (tipo = 0, nombre = '', orden = 'ASC') => { //?tipo=5&nombre=rucula&orden=ASC
+const getMercaderias = async (tipo = '', nombre = '', orden = '') => { //?tipo=5&nombre=rucula&orden=ASC
     let result = []
     let response = await fetch(`${URL}?tipo=${tipo}&nombre=${nombre}&orden=${orden}`)
     if(response.ok){

@@ -5,9 +5,10 @@ import { postComanda } from "../services/comandas.js"
 import ComandaCreate from "../components/section/ComandaCreate.js";
 import FormaEntrega from "../components/section/FormaEntrega.js";
 import ComandaTicket from "../components/section/ComandaTicket.js";
+import Searcher from "../components/section/Searcher.js";
 
 //CARRITO
-var selectedProduct = []; //['']
+var selectedProduct = []; //[''] /*sesion por pestana, local storage*/
 
 //RENDER
 const render = async () => {
@@ -16,24 +17,29 @@ const render = async () => {
     for (let i = 0; i < mercaderias.length; i++) {
         main.innerHTML += Mercaderia(mercaderias[i], selectedProduct);
     }
-    onListItemClick(document.querySelectorAll('.mercaderia'))
+    onListItemClick(document.querySelectorAll('.open_detail'))
     onListItemClick(document.querySelectorAll('.selectorType'))
     onListItemClick(document.querySelectorAll('.mercaderia__view'))
     onListItemClick(document.querySelectorAll('.mercaderia__add'))
     onListItemClick(document.querySelectorAll('.selectedProduct'))
+    onListItemClick(document.querySelectorAll('.search'))
 }
 window.onload = render;
 
 //CLICK
 const onListItemClick = (elements) => {
     elements.forEach(element => {
-        if (element.classList.contains('mercaderia__view')) {
+        if (element.classList.contains('open_detail')) {
             element.addEventListener('click', () => onClickViewButton(element.id))
         } else if (element.classList.contains('mercaderia__add')) {
             element.addEventListener('click', () => onClickAddButton(element.id))
-        } else if (element.classList.contains('modal__close')) { //button
-            element.addEventListener('click', () => onClickCloseButton(element.id)) //html
-        } else if (element.classList.contains('selectedProduct')) {
+        } 
+        
+        else if (element.matches('#modal__close')) { //button
+            element.addEventListener('click', () => onClickCloseButton()) //html
+        } 
+
+        else if (element.classList.contains('selectedProduct')) {
             element.addEventListener('click', () => onClickPreviewCommand())
         } else if (element.classList.contains('modal__next')) { 
             element.addEventListener('click', () => onClickNextButton()) 
@@ -41,6 +47,8 @@ const onListItemClick = (elements) => {
           element.addEventListener('click', () => onClickCreateButton()) 
         } else if (element.classList.contains('selectorType')) { 
           element.addEventListener('click', () => onClickSelectorType(element.value)) 
+        } else if (element.classList.contains('search')) { 
+            element.addEventListener('click', () => onClickSearch(element)) 
         }
     });
 }
@@ -48,18 +56,20 @@ const onListItemClick = (elements) => {
 //AGREGAR PRODUCTO
 const onClickAddButton = (id) => {
     const button = document.querySelector(`.mercaderia__add[id='${id}']`);
-    console.log(button.textContent)
+    const icon = button.querySelector("i");
+
     if (selectedProduct.includes(id)) {
         console.log(`Delete element with id ${id}`)
         selectedProduct = selectedProduct.filter(e => e != id)
-        button.textContent = "Agregar"
-        button.classList.toggle('buttonSelected')
-        console.log(button.textContent)
+        icon.textContent = 'add_circle_outline'
+        button.classList.remove('buttonSelected');
+        button.classList.add('buttonNonSelected');
     } else {
         console.log(`Add element with id ${id}`)
         selectedProduct.push(id);
-        button.textContent = "Quitar"
-        button.classList.toggle('buttonNonSelected')
+        icon.textContent = 'playlist_add_check'
+        button.classList.remove('buttonNonSelected');
+        button.classList.add('buttonSelected');
     }
     console.log(selectedProduct)
 
@@ -77,16 +87,17 @@ const onClickViewButton = async (id) => {
     //main.innerHTML = "";
     section.innerHTML = MercaderiaDetail(mercaderia);
     //agrego close al listener
-    onListItemClick(document.querySelectorAll('.modal__close'))
+    onListItemClick(document.querySelectorAll('#modal__close'))
 }
 //CERRAR MODAL
-const onClickCloseButton = async (id) => {
-    console.log("cerrar"+id)
+const onClickCloseButton = async () => {
     let section = document.getElementById("modalDetail");
     section.innerHTML ="";
     let background = document.getElementById("background");
     background.className = "";
 }
+
+
 //PREVIEW COMANDA
 const onClickPreviewCommand = async () => {
     let section = document.getElementById("modalDetail");
@@ -103,7 +114,7 @@ const onClickPreviewCommand = async () => {
 
     section.innerHTML = await ComandaCreate(command);
     //agrego close al listener
-    onListItemClick(document.querySelectorAll('.modal__close'))
+    onListItemClick(document.querySelectorAll('#modal__close'))
     onListItemClick(document.querySelectorAll('.modal__next'))
 }
 //NEXT -> FormaEntrega
@@ -111,7 +122,7 @@ const onClickNextButton = async () => {
     let section = document.getElementById("modalDetail");
     section.innerHTML = await FormaEntrega()
 
-    onListItemClick(document.querySelectorAll('.modal__close'))
+    onListItemClick(document.querySelectorAll('#modal__close'))
     onListItemClick(document.querySelectorAll('.modal__finish'))
 }
 //POST COMANDA
@@ -135,26 +146,42 @@ const onClickCreateButton = async () => {
 
     let section = document.getElementById("modalDetail");
     section.innerHTML = await ComandaTicket(response)
-    onListItemClick(document.querySelectorAll('.modal__close'))
+    onListItemClick(document.querySelectorAll('#modal__close'))
 }
 //SELECTOR TYPE
 const onClickSelectorType = async (id) => { //recibe el value y lo imprime
-  let main = document.getElementById("allProducts");
-  let mercaderias = await getMercaderias(id);
-  main.innerHTML =""
-  const title = document.createElement('h2');
-  title.classList.add('title');
-  title.textContent = "sectionData.title";
-  main.appendChild(title)
-for (let i = 0; i < mercaderias.length; i++) {
-      main.innerHTML += Mercaderia(mercaderias[i], selectedProduct);
-  }
-/*  onListItemClick(document.querySelectorAll('.mercaderia'))
-  onListItemClick(document.querySelectorAll('.mercaderia__view'))
-  onListItemClick(document.querySelectorAll('.mercaderia__add'))
-  onListItemClick(document.querySelectorAll('.selectedProduct'))
+    let section = document.getElementById("modalDetail");
+    let mercaderias = await getMercaderias(id);
+  
+    let background = document.getElementById("background");
+    background.className = "background";
 
-  //contador en nav
-  let counter = document.getElementById("counter");
-  counter.textContent = `(${selectedProduct.length})`;
-*/}
+    title.classList.add('title');
+    title.textContent = `Filter ${id}`;
+
+    const div = document.createElement('div');
+    div.classList.add("filterType")
+    /*
+    let main = document.querySelector("main");
+    title.classList.add('title');
+    title.textContent = "sectionData.title";
+    */
+    for (let i = 0; i < mercaderias.length; i++) {
+        div.innerHTML += Mercaderia(mercaderias[i], selectedProduct);
+    }
+    section.appendChild(div)
+    onListItemClick(document.querySelectorAll('.mercaderia__add'))
+}
+//SEARCH
+const onClickSearch = async (element) => {
+    console.log(element)
+    let section = document.getElementById("modalDetail");
+
+    let background = document.getElementById("background");
+    background.className = "background";
+
+    section.innerHTML = Searcher();
+
+    onListItemClick(document.querySelectorAll('#modal__close'))
+    onListItemClick(document.querySelectorAll('.modal__search'))
+}

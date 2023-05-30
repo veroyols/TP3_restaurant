@@ -13,32 +13,38 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
         <link rel="stylesheet" href="https://kit.fontawesome.com/46300445ea.js" crossorigin="anonymous"/>
     -->
-    <script src="https://kit.fontawesome.com/46300445ea.js" crossorigin="anonymous"></script>      
-
+    <!-- icons ww3-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
  
 </head>
 <body class="body">
     <header class="header">
         <!--img class="logo" src="../../src/images/logo.png" alt="Logo del restaurant." width="30"-->
-        <h1>menu</h1> 
+        <h1 class="title">MENU</h1> 
         <nav class="nav">
             <ul>
-                <li class="selectedProduct">VER MI PEDIDO<p id="counter"></p></li>            
-                <li class="selectorType" value="1">ENTRADA</li>            
-                <li class="selectorType" value="2">MINUTAS</li>
-                <li class="selectorType" value="3">PASTAS</li>
-                <li class="selectorType" value="4">PARRILLA</li>
-                <li class="selectorType" value="5">PIZZAS</li>
-                <li class="selectorType" value="6">SANDWICH</li>
-                <li class="selectorType" value="7">ENSALADAS</li>
-                <li class="selectorType" value="8">BEBIDAS</li>
-                <li class="selectorType" value="9">CERVEZA ARTESANAL</li>
-                <li class="selectorType" value="10">POSTRE</li>
+                <li title="Buscar" class="search"><i class="material-icons">search</i></li>
+                <li title="Ver mi pedido" class="selectedProduct"><i class="material-icons">shopping_cart</i><p id="counter">(0)</p></li>            
+                <li title="Comandas del dia" class="selectedProduct"><i class="material-icons">settings</i></li>
             </ul>
         </nav>
     </header>
-    <main>
+                <!--
+
+                    <li class="selectorType" value="1" name="Entrada" >ENTRADA</li>            
+                    <li class="selectorType" value="2" name="Minutas" >MINUTAS</li>
+                    <li class="selectorType" value="3" name="Pastas" >PASTAS</li>
+                    <li class="selectorType" value="4" name="Parrilla" >PARRILLA</li>
+                    <li class="selectorType" value="5" name="Pizzas" >PIZZAS</li>
+                <li class="selectorType" value="6" name="Sandwich" >SANDWICH</li>
+                <li class="selectorType" value="7" name="Ensaladas" >ENSALADAS</li>
+                <li class="selectorType" value="8" name="Bebidas" >BEBIDAS</li>
+                <li class="selectorType" value="9" name="Cerveza Artesanal" >CERVEZA ARTESANAL</li>
+                <li class="selectorType" value="10" name="Postre" >POSTRE</li>
+            -->
+    <main id="main">
         <section id="allProducts">
+            
             <!-- SPA: Renderiza cuando se carga la pagina -->
         </section>
         <div id="background">
@@ -49,10 +55,10 @@
         </section>
     </main>
     <footer class="footer">
-        <p class="footer__text">&copy;2023 | Proyecto de Software | 1er cuatrimestre</p>
+        <p class="footer__text">Proyecto de Software 1C 2023&copy;</p>
         <!--img class="footer__logo" src="../../src/images/logo.png" alt="Logo del restaurant." width="50"-->
     </footer>
     <!-- js-->
-    <script src="../../src/js/main.js" type="module"></script>
+    <script src="../js/main.js" type="module"></script>
 </body>
 </html>
