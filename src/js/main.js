@@ -18,36 +18,63 @@ const render = async () => {
     for (let i = 0; i < mercaderias.length; i++) {
         main.innerHTML += Mercaderia(mercaderias[i], selectedProduct);
     }
+    //nav icons
+    onListItemClick(document.querySelectorAll('.home'))
+    onListItemClick(document.querySelectorAll('.search'))
+    onListItemClick(document.querySelectorAll('.selectedProduct'))
+    onListItemClick(document.querySelectorAll('.commands'))
+
+    //functions
     onListItemClick(document.querySelectorAll('.open_detail'))
     onListItemClick(document.querySelectorAll('.selectorType'))
     onListItemClick(document.querySelectorAll('.mercaderia__view'))
     onListItemClick(document.querySelectorAll('.mercaderia__add'))
-    onListItemClick(document.querySelectorAll('.selectedProduct'))
-    onListItemClick(document.querySelectorAll('.search'))
 }
 window.onload = render;
 
 //CLICK
 const onListItemClick = (elements) => {
     elements.forEach(element => {
-        if (element.classList.contains('open_detail')) {
+    //nav icons
+        if (element.classList.contains('home')) { 
+            element.addEventListener('click', () => refresh()) 
+        } else if (element.classList.contains('search')) { 
+            element.addEventListener('click', () => openModalSearch()) 
+        }  else if (element.classList.contains('selectedProduct')) {
+            element.addEventListener('click', () => openPreviewCommand())
+        } else if (element.classList.contains('commands')) {
+            element.addEventListener('click', () => command())
+        }
+
+
+    //functions
+        else if (element.classList.contains('open_detail')) {
             element.addEventListener('click', () => openMercaderiaDetail(element.id))
         } else if (element.classList.contains('mercaderia__add')) {
             element.addEventListener('click', () => addMercaderiaToCart(element.id))
         } else if (element.matches('#modal__close')) { //button
             element.addEventListener('click', () => closeModal()) //html
-        } else if (element.classList.contains('selectedProduct')) {
-            element.addEventListener('click', () => openPreviewCommand())
         } else if (element.classList.contains('modal__next')) { 
             element.addEventListener('click', () => openNextModal()) 
         } else if (element.classList.contains('modal__finish')) { 
           element.addEventListener('click', () => createComanda()) 
-        } else if (element.classList.contains('search')) { 
-            element.addEventListener('click', () => openModalSearch(element)) 
-        } else if (element.matches('#button__search')) { 
+        }  else if (element.matches('#button__search')) { 
             element.addEventListener('click', () => searchItems(element)) 
         }
     });
+}
+
+
+//limpiar
+const refresh = () => {
+    let main = document.getElementById("allProducts");
+    main.innerHTML = '';
+    render();
+}
+const command = () => {
+    alert('hola')
+    let main = document.getElementById("allProducts");
+    main.innerHTML = '';
 }
 
 //AGREGAR PRODUCTO
@@ -189,8 +216,7 @@ const createComanda = async () => {
 
 
 //MODAL SEARCHER
-const openModalSearch = (element) => {
-    console.log(element)
+const openModalSearch = () => {
     let section = document.getElementById("modalDetail");
 
     let background = document.getElementById("background");
@@ -222,5 +248,7 @@ const searchItems = async (el) => {
 
     const filtered = await getMercaderias(type, name, order);
     console.log(filtered)
+
+
 
 }
