@@ -3,23 +3,26 @@ const ComandaTicket = async (response) => {
     console.log(response);
     
     if(response.id) {
+        let fecha = response.fecha.split("T");
+        
         return  `
         <article class="modalDetail">
             <div class="comandaDetail">
-                <i class="fa-light fa-xmark"/>
                 <h2>Ticket de compra</h2>
                 <p class="mercaderiaDetailRight">${response.id}</p>
-                <p class="mercaderiaDetailRight">${response.fecha.split(0,10)}</p>
-                <p class="mercaderiaDetailRight">${response.formaEntrega.descripcion}</p>
+                <p class="mercaderiaDetailRight">Forma de entrega: ${response.formaEntrega.descripcion}</p>
+                <p class="mercaderiaDetailRight">${fecha[0]}</p>
                 <div class="content">
                     <table>
                         <tbody> 
-                        ${response.mercaderias.map(element =>  { return `
                             <tr>
                                 <td>Id</td>
                                 <td>Nombre</td>
                                 <td>Precio</td>
                             </tr>
+                        ${response.mercaderias.map(element =>  { 
+                            
+                            return `
                             <tr>
                                 <td>${element.id}</td>
                                 <td>${element.nombre}</td>
@@ -31,8 +34,9 @@ const ComandaTicket = async (response) => {
                 </div>
                 <div class="comandaDetail__buttons">
                     <h3>Total $${response.total}</h3>
-                    <button class="modal__close">Cerrar</button>
+                    <button id="modal__close">Cerrar</button>
                 </div>
+                <i class="material-icons" id="modal__close" title="Cerrar">close</i>
             </div>    
         </article>
         `

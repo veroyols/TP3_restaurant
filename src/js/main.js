@@ -8,7 +8,8 @@ import ComandaTicket from "../components/section/ComandaTicket.js";
 import Searcher from "../components/section/Searcher.js";
 
 //CARRITO
-var selectedProduct = []; //[''] /*sesion por pestana, local storage*/
+var selectedProduct = []; 
+//[''] /*sesion por pestana, local storage*/
 
 //RENDER
 const render = async () => {
@@ -30,31 +31,27 @@ window.onload = render;
 const onListItemClick = (elements) => {
     elements.forEach(element => {
         if (element.classList.contains('open_detail')) {
-            element.addEventListener('click', () => onClickViewButton(element.id))
+            element.addEventListener('click', () => openMercaderiaDetail(element.id))
         } else if (element.classList.contains('mercaderia__add')) {
-            element.addEventListener('click', () => onClickAddButton(element.id))
-        } 
-        
-        else if (element.matches('#modal__close')) { //button
-            element.addEventListener('click', () => onClickCloseButton()) //html
-        } 
-
-        else if (element.classList.contains('selectedProduct')) {
-            element.addEventListener('click', () => onClickPreviewCommand())
+            element.addEventListener('click', () => addMercaderiaToCart(element.id))
+        } else if (element.matches('#modal__close')) { //button
+            element.addEventListener('click', () => closeModal()) //html
+        } else if (element.classList.contains('selectedProduct')) {
+            element.addEventListener('click', () => openPreviewCommand())
         } else if (element.classList.contains('modal__next')) { 
-            element.addEventListener('click', () => onClickNextButton()) 
+            element.addEventListener('click', () => openNextModal()) 
         } else if (element.classList.contains('modal__finish')) { 
-          element.addEventListener('click', () => onClickCreateButton()) 
-        } else if (element.classList.contains('selectorType')) { 
-          element.addEventListener('click', () => onClickSelectorType(element.value)) 
+          element.addEventListener('click', () => createComanda()) 
         } else if (element.classList.contains('search')) { 
-            element.addEventListener('click', () => onClickSearch(element)) 
+            element.addEventListener('click', () => openModalSearch(element)) 
+        } else if (element.matches('#button__search')) { 
+            element.addEventListener('click', () => searchItems(element)) 
         }
     });
 }
 
 //AGREGAR PRODUCTO
-const onClickAddButton = (id) => {
+const addMercaderiaToCart = (id) => {
     const button = document.querySelector(`.mercaderia__add[id='${id}']`);
     const icon = button.querySelector("i");
 
@@ -79,7 +76,7 @@ const onClickAddButton = (id) => {
 }
 
 //DETALLE DEL PRODUCTO
-const onClickViewButton = async (id) => {
+const openMercaderiaDetail = async (id) => {
     let mercaderia = await getMercaderia(id);
     let section = document.getElementById("modalDetail");
     let background = document.getElementById("background");
@@ -90,7 +87,7 @@ const onClickViewButton = async (id) => {
     onListItemClick(document.querySelectorAll('#modal__close'))
 }
 //CERRAR MODAL
-const onClickCloseButton = async () => {
+const closeModal = async () => {
     let section = document.getElementById("modalDetail");
     section.innerHTML ="";
     let background = document.getElementById("background");
@@ -99,12 +96,12 @@ const onClickCloseButton = async () => {
 
 
 //PREVIEW COMANDA
-const onClickPreviewCommand = async () => {
+const openPreviewCommand = async () => {
     let section = document.getElementById("modalDetail");
 
     let background = document.getElementById("background");
     background.className = "background";
-    
+
     let command = [];
     for (let i = 0; i < selectedProduct.length; i++) {
         let product = await getMercaderia(selectedProduct[i])
@@ -113,27 +110,48 @@ const onClickPreviewCommand = async () => {
     console.log(command)
 
     section.innerHTML = await ComandaCreate(command);
+    if(selectedProduct.length > 0){
+        const button = document.getElementById('comandaCreateNext');
+        button.disabled = false;
+    }
+
     //agrego close al listener
     onListItemClick(document.querySelectorAll('#modal__close'))
     onListItemClick(document.querySelectorAll('.modal__next'))
 }
 //NEXT -> FormaEntrega
-const onClickNextButton = async () => {
+const selectFormaEntrega = (event) => {
+    const selected = event.target;
+    const delivery = document.querySelectorAll('.options__delivery button');
+    delivery.forEach(button => {
+        button.classList.remove('selected');
+    });
+    selected.classList.add('selected');
+    const button = document.getElementById('formaEntregaSelected');
+    button.disabled = false;
+}
+
+const openNextModal = () => {
     let section = document.getElementById("modalDetail");
-    section.innerHTML = await FormaEntrega()
+    section.innerHTML = FormaEntrega()
+
+    const delivery = document.querySelectorAll('.options__delivery button');
+    
+    for (let i = 0; i < delivery.length; i++) {
+        delivery[i].addEventListener('click', selectFormaEntrega);
+    }
 
     onListItemClick(document.querySelectorAll('#modal__close'))
     onListItemClick(document.querySelectorAll('.modal__finish'))
 }
 //POST COMANDA
-const onClickCreateButton = async () => {
-    console.log('creando comanda')
-    const delivery = document.querySelectorAll('.delivery');
+const createComanda = async () => {
+    console.log('POST comanda')
+    const delivery = document.querySelectorAll('.options__delivery button');
     let formaEntrega;
-    for (let i = 0; i < delivery.length; i++) {
-        const op = delivery[i];
-        if (op.checked) {
-            formaEntrega = op.value;
+    for (let i = 0; i < delivery.length ; i++) {
+        if (delivery[i].classList.contains('selected')) {
+            formaEntrega = delivery[i].value;
         }  
     }
 
@@ -144,36 +162,34 @@ const onClickCreateButton = async () => {
     }
     let response = await postComanda(body)
 
+    for (let i = 0; i < selectedProduct.length; i++) {
+        console.log("for")
+        console.log(selectedProduct)
+        const id = selectedProduct[i];
+        console.log(id)
+        const button = document.querySelector(`.mercaderia__add[id='${id}']`);
+        const icon = button.querySelector("i");
+        console.log(`Delete element with id ${id}`)
+        icon.textContent = 'add_circle_outline'
+        button.classList.remove('buttonSelected');
+        button.classList.add('buttonNonSelected');
+    }
+    //contador en nav
+    selectedProduct = [];
+    let counter = document.getElementById("counter");
+    counter.textContent = `(${selectedProduct.length})`;        
+
     let section = document.getElementById("modalDetail");
     section.innerHTML = await ComandaTicket(response)
+
+    
     onListItemClick(document.querySelectorAll('#modal__close'))
+    
 }
-//SELECTOR TYPE
-const onClickSelectorType = async (id) => { //recibe el value y lo imprime
-    let section = document.getElementById("modalDetail");
-    let mercaderias = await getMercaderias(id);
-  
-    let background = document.getElementById("background");
-    background.className = "background";
 
-    title.classList.add('title');
-    title.textContent = `Filter ${id}`;
 
-    const div = document.createElement('div');
-    div.classList.add("filterType")
-    /*
-    let main = document.querySelector("main");
-    title.classList.add('title');
-    title.textContent = "sectionData.title";
-    */
-    for (let i = 0; i < mercaderias.length; i++) {
-        div.innerHTML += Mercaderia(mercaderias[i], selectedProduct);
-    }
-    section.appendChild(div)
-    onListItemClick(document.querySelectorAll('.mercaderia__add'))
-}
-//SEARCH
-const onClickSearch = async (element) => {
+//MODAL SEARCHER
+const openModalSearch = (element) => {
     console.log(element)
     let section = document.getElementById("modalDetail");
 
@@ -183,5 +199,28 @@ const onClickSearch = async (element) => {
     section.innerHTML = Searcher();
 
     onListItemClick(document.querySelectorAll('#modal__close'))
-    onListItemClick(document.querySelectorAll('.modal__search'))
+    onListItemClick(document.querySelectorAll('#button__search'))
+}
+
+
+//NOMBRE TIPO ORDEN
+const searchItems = async (el) => { 
+    console.log(el);
+    console.log('GET mercaderias')
+
+    const filterByName = document.getElementById('searcher__name');
+    const name = filterByName.value;
+    console.log(name)
+
+    const filterByType = document.getElementById('searcher__type');
+    const type = filterByType.value;
+    console.log(type)
+
+    const filterByPrice = document.getElementById('searcher__order');
+    const order = filterByPrice.value;
+    console.log(order)
+
+    const filtered = await getMercaderias(type, name, order);
+    console.log(filtered)
+
 }

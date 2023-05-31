@@ -18,7 +18,9 @@
     --button-add:#dcd5d1;
     --button-add-hover:#f6af89;
     --pinterest-color: #cb2028;
-    --red-color: #da0909;
+    --red-color: #a11a1a;
+    --success: rgb(41, 178, 137);
+    --button-delivery:#ca7f56;
 
 }
 /*Por defecto del browser*/
@@ -149,7 +151,7 @@ html {
                 display: flex;
             }
             .mercaderia__add:hover , .mercaderia__add.buttonNonSelected:hover{
-                background-color:green;
+                background-color: var(--success);
                 transition: background-color 4s;
             }              
              
@@ -159,11 +161,11 @@ html {
             }
               
               .mercaderia__add.buttonSelected {
-                background-color: green;
+                background-color:var(--success);
               }
               
               .mercaderia__add.buttonSelected:hover {
-                background-color: red;
+                background-color: var(--red-color);
                 transition: background-color 3s;
               }
 
@@ -181,11 +183,11 @@ html {
 /* #endregion */
 
 /* #region MODAL DETALLE DE MERCADERIA */
-    .mercaderiaDetail {
-        background-color: #f4f4f4;
-        top: 160px;
+    .mercaderiaDetail{
+        background-color: var(--modal);
+        top: 5rem;
         position:fixed;
-        margin: 0rem 20rem;
+        margin: 0rem 10rem;
         border-radius: 30px;
         padding: 50px 40px;
         z-index: 2; 
@@ -193,12 +195,15 @@ html {
         justify-content: center;
         align-items: center;
     }
-    .mercaderiaDetail i {
+    .mercaderiaDetail img {
+        max-width:500px ;
+    }
+    .mercaderiaDetail i{
         align-self: start;
         cursor: pointer;
     }
-    .mercaderiaDetail div .mercaderiaDetailText {
-        font-size: 1.2rem;
+    .mercaderiaDetail div .mercaderiaDetailText  {
+        font-size: 1rem;
         font-weight:bold;
         margin-left: 40px;
     }
@@ -222,10 +227,10 @@ html {
 
 /* #region MODAL DE COMANDA*/
     .comandaDetail {
-        background-color: #f4f4f4;
+        background-color: var(--modal);
         width: 50rem;
         position:absolute;
-        top: 160px;
+        top: 5rem;
         left: 0; 
         right: 0;
         margin: auto;            
@@ -235,6 +240,12 @@ html {
         align-content: center;
         z-index: 2; 
     }
+    .comandaDetail i {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        cursor: pointer;
+      }
     .textRight {
         text-align: right;
     }
@@ -243,16 +254,20 @@ html {
         width: 100%;
     }
     .comandaDetail .content {
-        background-color: #f4f4f4;
+        background-color: var(--modal);
         border-radius: 30px;
         padding: 50px 40px;
         align-items: center;
         align-content: center;
     }
+    .comandaDetail .content h3{
+        text-align:right;
+        padding-top: 2rem;
+        padding-right: 1rem;
+    }
+
     .comandaDetail__buttons {
-        display: grid;
-        grid-template-columns: 8fr 2fr  2fr;
-        text-align: center;
+        text-align: right;
     }
     .comandaDetail__buttons h3 {
         align-items: center;
@@ -277,9 +292,36 @@ html {
 
 /* #endregion */
 
+/* #region FORMA DE ENTREGA */
+    .options__delivery{
+        display: flex;
+        padding: 2rem 5rem;
+        justify-content: space-between;
+    }
+    .options__delivery button{
+        font-size: large;
+        padding: 1rem;
+        cursor:pointer;
+        border:none;
+        background-color:var(--nav-counter);
+        width: 27%;
+        border-radius: 10px;
+    }
+    .options__delivery button:hover{
+        background-color: var(--button-delivery);
+        transform:scale(1.2);
+        transition: background-color 2s;
+    }
+
+    .options__delivery button.selected{
+        background-color: var(--button-delivery);
+    }
+
+/* #endregion */
+
 /* #region MODAL SEARCHER*/
     .searcher {
-        background-color: #f4f4f4;
+        background-color: var(--modal);
         top: 160px;
         width: 50rem;
         position:absolute;

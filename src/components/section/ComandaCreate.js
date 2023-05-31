@@ -5,7 +5,6 @@ const ComandaCreate = async (list) => {
     for (let i = 0; i < list.length; i++) {
         total += list[i].precio;
     }
-
     return  `
     <article class="modalDetail">
         <div class="comandaDetail">
@@ -23,16 +22,16 @@ const ComandaCreate = async (list) => {
                     `}).join("")}
                     </tbody>
                 </table>
+                ${list.length > 0 ? `<h3>Total a pagar $${total}</h3>` : 'No se han seleccionado productos'}
             </div>
             <div class="comandaDetail__buttons">
-                <h3>Total a pagar $${total}</h3>
-                <button class="modal__next">Siguiente</button>
+                <button disabled id="comandaCreateNext" class="modal__next">Siguiente</button>
                 <button id="modal__close">Volver</button>
-                <i class="material-icons" id="modal__close" title="Cerrar">close</i>
             </div>
+            <i class="material-icons" id="modal__close" title="Cerrar">close</i>
         </div>    
     </article>
-`
+    `
 }
 
 export default ComandaCreate; 

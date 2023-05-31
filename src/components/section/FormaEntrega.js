@@ -1,4 +1,4 @@
-const FormaEntrega = async () => {
+const FormaEntrega = () => {
 
     const delivery = [
         {
@@ -18,21 +18,18 @@ const FormaEntrega = async () => {
     return  `
     <article class="mercaderia__view">
         <div class="comandaDetail">
-        <i class="fa-light fa-xmark"></i>
             <h2>Forma de entrega</h2>
             <p class="mercaderiaDetailRight">Seleccione</p>
-            <div class="content">
-                    ${delivery.map(element =>  { return `
-                        <label>
-                            <input type="radio" class="delivery" value="${element.value}">
-                            ${element.name}
-                        </label>
-                    `})}
-                </div>
-                <div class="comandaDetail__buttons">
-                    <button class="modal__finish">Finalizar</button>
-                    <button id="modal__close">Volver</button>
-                </div>
+            <div class="options__delivery">
+                ${delivery.map(element =>  { return `
+                    <button value="${element.value}" class="delivery">${element.name}</button>
+                `}).join('')}
+            </div>
+            <div class="comandaDetail__buttons">
+                <button id="formaEntregaSelected" disabled class="modal__finish">Finalizar</button>
+                <button id="modal__close">Volver</button>
+            </div>
+            <i class="material-icons" id="modal__close" title="Cerrar">close</i>
         </div>    
     </article>
 `
