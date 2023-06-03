@@ -1,6 +1,6 @@
 const URL = 'https://localhost:7137/api/v1/Comanda';
 
-const getComandas = async (date) => { //5/14/23 o 5-14-23 req
+const getComandas = async (date = '') => { //5/14/23 o 5-14-23 req
     let result = []
     let response = await fetch(URL+'?fecha='+date)
     if(response.ok){

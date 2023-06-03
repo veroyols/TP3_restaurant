@@ -1,7 +1,7 @@
 import Mercaderia from "../components/section/Mercaderia.js";
 import MercaderiaDetail from "../components/section/MercaderiaDetail.js";
 import { getMercaderias, getMercaderia } from "../services/mercaderias.js";
-import { postComanda } from "../services/comandas.js"
+import { postComanda, getComandas } from "../services/comandas.js"
 import ComandaCreate from "../components/section/ComandaCreate.js";
 import FormaEntrega from "../components/section/FormaEntrega.js";
 import ComandaTicket from "../components/section/ComandaTicket.js";
@@ -11,8 +11,8 @@ import Searcher from "../components/section/Searcher.js";
 var selectedProduct = []; 
 //[''] /*sesion por pestana, local storage*/
 
-//RENDER
-const render = async () => {
+//RENDERProducts
+const renderProducts = async () => {
     let main = document.getElementById("allProducts");
     let mercaderias = await getMercaderias();
     for (let i = 0; i < mercaderias.length; i++) {
@@ -26,11 +26,12 @@ const render = async () => {
 
     //functions
     onListItemClick(document.querySelectorAll('.open_detail'))
-    onListItemClick(document.querySelectorAll('.selectorType'))
+    //onListItemClick(document.querySelectorAll('.selectorType'))
     onListItemClick(document.querySelectorAll('.mercaderia__view'))
     onListItemClick(document.querySelectorAll('.mercaderia__add'))
 }
-window.onload = render;
+
+window.onload = renderProducts;
 
 //CLICK
 const onListItemClick = (elements) => {
@@ -43,7 +44,7 @@ const onListItemClick = (elements) => {
         }  else if (element.classList.contains('selectedProduct')) {
             element.addEventListener('click', () => openPreviewCommand())
         } else if (element.classList.contains('commands')) {
-            element.addEventListener('click', () => command())
+            element.addEventListener('click', () => renderComands())
         }
 
 
@@ -66,18 +67,47 @@ const onListItemClick = (elements) => {
 
 
 //limpiar
-const refresh = () => {
+const refresh = async () => {
     let main = document.getElementById("allProducts");
     main.innerHTML = '';
-    render();
+    await renderProducts();
 }
+//MOSTRAR COMANDAS
 const command = () => {
-    alert('hola')
+    alert('comandas')
     let main = document.getElementById("allProducts");
     main.innerHTML = '';
+}
+//MOSTRAR TOP DESPUES DE UN MODAL
+/*const up = () => {
+    const up = document.getElementById("up");
+    up.scrollIntoView({ behavior: 'smooth' });
+}*/
+
+//LIMPIAR CARRITO
+const clearSelectedProducts = () => {
+    if(document.querySelector('.mercaderia__add')) {
+        //limpiar productos seleccionados
+        for (let i = 0; i < selectedProduct.length; i++) { //codigo duplicado
+            console.log("for")
+            console.log(selectedProduct)
+            const id = selectedProduct[i];
+            console.log(id)
+            const button = document.querySelector(`.mercaderia__add[id='${id}']`);
+            const icon = button.querySelector("i");
+            console.log(`Delete element with id ${id}`)
+            icon.textContent = 'add_circle_outline'
+            button.classList.remove('buttonSelected');
+            button.classList.add('buttonNonSelected');
+        }
+    }
+    //contador en nav
+    selectedProduct = [];
+    let counter = document.getElementById("counter");
+    counter.textContent = `(${selectedProduct.length})`;        
 }
 
-//AGREGAR PRODUCTO
+//AGREGAR PRODUCTO AL CARRITO
 const addMercaderiaToCart = (id) => {
     const button = document.querySelector(`.mercaderia__add[id='${id}']`);
     const icon = button.querySelector("i");
@@ -114,13 +144,12 @@ const openMercaderiaDetail = async (id) => {
     onListItemClick(document.querySelectorAll('#modal__close'))
 }
 //CERRAR MODAL
-const closeModal = async () => {
+const closeModal = () => {
     let section = document.getElementById("modalDetail");
     section.innerHTML ="";
     let background = document.getElementById("background");
     background.className = "";
 }
-
 
 //PREVIEW COMANDA
 const openPreviewCommand = async () => {
@@ -146,10 +175,13 @@ const openPreviewCommand = async () => {
     onListItemClick(document.querySelectorAll('#modal__close'))
     onListItemClick(document.querySelectorAll('.modal__next'))
 }
-//NEXT -> FormaEntrega
+//Se ven los productos seleccionados NEXT -> FormaEntrega
 const selectFormaEntrega = (event) => {
+// scroll arriba
     const selected = event.target;
     const delivery = document.querySelectorAll('.options__delivery button');
+    const element = document.getElementById("up");
+
     delivery.forEach(button => {
         button.classList.remove('selected');
     });
@@ -158,6 +190,7 @@ const selectFormaEntrega = (event) => {
     button.disabled = false;
 }
 
+//Se selecciona la forma de entrega
 const openNextModal = () => {
     let section = document.getElementById("modalDetail");
     section.innerHTML = FormaEntrega()
@@ -188,34 +221,20 @@ const createComanda = async () => {
         formaEntrega: formaEntrega,
     }
     let response = await postComanda(body)
-
-    for (let i = 0; i < selectedProduct.length; i++) {
-        console.log("for")
-        console.log(selectedProduct)
-        const id = selectedProduct[i];
-        console.log(id)
-        const button = document.querySelector(`.mercaderia__add[id='${id}']`);
-        const icon = button.querySelector("i");
-        console.log(`Delete element with id ${id}`)
-        icon.textContent = 'add_circle_outline'
-        button.classList.remove('buttonSelected');
-        button.classList.add('buttonNonSelected');
-    }
-    //contador en nav
-    selectedProduct = [];
-    let counter = document.getElementById("counter");
-    counter.textContent = `(${selectedProduct.length})`;        
+    
+    //limpiar
+    refresh();
+    clearSelectedProducts();
 
     let section = document.getElementById("modalDetail");
     section.innerHTML = await ComandaTicket(response)
 
-    
     onListItemClick(document.querySelectorAll('#modal__close'))
     
 }
 
 
-//MODAL SEARCHER
+//MODAL SEARCHER: opciones de busqueda
 const openModalSearch = () => {
     let section = document.getElementById("modalDetail");
 
@@ -229,7 +248,7 @@ const openModalSearch = () => {
 }
 
 
-//NOMBRE TIPO ORDEN
+//NOMBRE TIPO ORDEN: enviar consulta
 const searchItems = async (el) => { 
     console.log(el);
     console.log('GET mercaderias')
@@ -249,6 +268,29 @@ const searchItems = async (el) => {
     const filtered = await getMercaderias(type, name, order);
     console.log(filtered)
 
+    let main = document.getElementById("allProducts");
+    main.innerHTML = '';
+
+    closeModal();
+
+    for (let i = 0; i < filtered.length; i++) {
+        main.innerHTML += Mercaderia(filtered[i], selectedProduct);
+    }
+        //functions
+        onListItemClick(document.querySelectorAll('.open_detail'))
+        onListItemClick(document.querySelectorAll('.mercaderia__view'))
+        onListItemClick(document.querySelectorAll('.mercaderia__add'))
+        onListItemClick(document.querySelectorAll('.modal__finish'))
+}
 
 
+//RENDER COMANDAS
+const renderComands = async () => {
+    let main = document.getElementById("allProducts");
+    let comandas = await getComandas();
+    console.log(comandas)
+    /*
+    for (let i = 0; i < comandas.length; i++) {
+        main.innerHTML += Comanda(comandas[i]);
+    }*/
 }

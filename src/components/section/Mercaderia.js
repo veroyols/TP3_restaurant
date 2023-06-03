@@ -10,10 +10,11 @@ const Mercaderia = (data, selectedProduct) => {
             <img class="mercaderia__image" src="${data.imagen}" alt="Imagen del plato">
         </div>
         <div class="mercaderia__foot">
-            <p>${data.tipo.descripcion}</p>
+            <p>${data.tipo.descripcion +' $'+ data.precio}</p>
             <button class="mercaderia__add" id="${data.id}"><i class="material-icons">add_circle_outline</i></button>
         </div>
     </article>
     `
 }
 export default Mercaderia; 
+//<p></p>

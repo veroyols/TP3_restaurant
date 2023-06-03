@@ -35,3 +35,4 @@ const ComandaCreate = async (list) => {
 }
 
 export default ComandaCreate; 
+//<a href="#">Siguiente</a>

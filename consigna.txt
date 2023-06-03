@@ -1,7 +1,7 @@
 Parte 3
--------------------------------------------------------------------------------------
-bug backend: el post no deberia insertar comandas sin mercaderia
-solve:
+----------------------------------------------------------------------------------------------------------------------------------------------
+backend: *el post no deberia insertar comandas sin mercaderia
+
 bool count = body.mercaderias.Count != 0;
                 bool formaEntrega = body.formaEntrega > 0 && body.formaEntrega <= 3;
 
@@ -10,42 +10,41 @@ bool count = body.mercaderias.Count != 0;
                     var response = await _serviceComanda.InsertComanda(body);
                     return new JsonResult(response) { StatusCode = 201 }; 
                 }
--------------------------------------------------------------------------------------
-Los criterios de aceptación son:
-1.ok Interfaz web donde se muestran todas las opciones de menú que cuenta el restaurante. 
-2.ok El usuario puede acceder al detalle de la mercadería donde se debe visualizar toda la información que esta presenta.
-3.OK Se debe permitir que el usuario arme la comanda con la mercadería que desea y elegir la forma de entrega.
-4. El usuario puede realizar búsquedas, filtrados y ordenamiento de la mercadería.
-5. La app debe tener un sector donde se visualicen todas las comandas del día.
-
-*Mercaderia/get (name, tipo, orden)
-*Mercaderia/get(id)
-*Mercaderia/post
-*Mercaderia/put
-*Mercaderia/delete
-*Comanda/get
-*Comanda/get(id)
-*Comanda/post
+----------------------------------------------------------------------------------------------------------------------------------------------
+*reemplazar [] por localStorage
+----------------------------------------------------------------------------------------------------------------------------------------------
+*crear comanda con el buscador cuando selecciono mercaderias de distintas busquedas
+----------------------------------------------------------------------------------------------------------------------------------------------
+*componente comandas, searcher comandas y comanda detail
+----------------------------------------------------------------------------------------------------------------------------------------------
+*ver ASIDE del search 
+----------------------------------------------------------------------------------------------------------------------------------------------
+*ver colores de botones y transiciones.  
+----------------------------------------------------------------------------------------------------------------------------------------------
 
 Consigna:
 Realizar una aplicación de frontend utilizando HTML, CSS y JS que cumpla con los requerimientos del cliente.
     ● Utilizar la API Rest realizada en el trabajo práctico 2 para suministrar los datos a la aplicación de Frontend.
     ● La página web debe contar con un buen diseño de UI. 
-        “El buen diseño de interfaz deusuario admite usabilidad con diseños visuales claros y consistentes y estructuración de contenido”(link). 
-        Se puede utilizar bootstrap o otro framework para el diseño de la interfaz.
     ● La página web debe ser intuitiva para el usuario y tener una buena UX
 
+Los criterios de aceptación son:
+1.ok Interfaz web donde se muestran todas las opciones de menú que cuenta el restaurante. *Mercaderia/get (name, tipo, orden)
 
-1.OK Debe permitir registrar la mercadería (platos, bebida o postre).
-2.ok Debe permitir registrar las comandas (el pedido del cliente)
-3.ok Debe enlistar las comandas con el detalle de los platos según la fecha que se le ingrese.
-4.OK Debe enlistar la información de la mercadería y permitir filtrar por nombre y/o tipo y ordenar por precio.
-5.OK Debe permitir modificar la información de la mercadería.
-6.OK Debe permitir eliminar la mercadería.
-7.OK edit Agregar búsqueda de mercadería por id
-8.ok Agregar búsqueda de comanda por id.
+2.ok El usuario puede acceder al detalle de la mercadería donde se debe visualizar toda la información que esta presenta.*Mercaderia/get(id)
 
+3.OK Se debe permitir que el usuario arme la comanda con la mercadería que desea y elegir la forma de entrega. *Comanda/post
 
+4.ok El usuario puede realizar búsquedas, filtrados y ordenamiento de la mercadería. *Mercaderia/get (name, tipo, orden)
+
+5. La app debe tener un sector donde se visualicen todas las comandas del día. *Comanda/get
+
+*Mercaderia/post
+*Mercaderia/put
+*Mercaderia/delete
+*Comanda/get(id)
+
+----------------------------------------------------------------------------------------------------------------------------------------------
 
     .header div{
         display: flex;
