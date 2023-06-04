@@ -1,5 +1,5 @@
 
-const ComandaTicket = async (response) => {
+const ComandaTicket = (response) => {
     console.log(response);
     
     if(response.id) {

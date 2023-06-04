@@ -1,7 +1,7 @@
 const Searcher = () => {
 
     const mercaderiaTipo = [
-        {name: "Seleccione", value: ''},
+        {name: "Tipo", value: ''},
         {name: "Entrada", value: 1},
         {name: "Minutas", value: 2},
         {name: "Pastas", value: 3},
@@ -14,7 +14,7 @@ const Searcher = () => {
         {name: "Postres", value: 10}
     ]
     const orden = [
-        {name: "Seleccione", value: ''},
+        {name: "Ordenar por precio", value: ''},
         {name: "Ascendente", value: "ASC"},
         {name: "Descendente", value: "DESC"}
     ]
@@ -27,11 +27,9 @@ const Searcher = () => {
             <form method="get">
                 <ul>
                     <li>
-                        <label for="name">Nombre: </label>
-                        <input id="searcher__name" type="text" placeholder="Ingrese . . .">
+                        <input id="searcher__name" type="text" placeholder="Ingrese nombre. . .">
                     </li>
                     <li>
-                        <label for="type">Tipo: </label>
                         <select id="searcher__type">
                         ${mercaderiaTipo.map(type =>  { 
                             return `
@@ -40,7 +38,6 @@ const Searcher = () => {
                         </select>
                     </li>
                     <li>
-                        <label for="order">Ordenar por precio: </label>
                         <select id="searcher__order">
                         ${orden.map(type =>  { 
                             return `

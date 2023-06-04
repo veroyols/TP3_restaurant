@@ -43,21 +43,17 @@ html {
 }
 /* #region HEADER Y NAV */
 .header {
-    margin: 2rem 2rem 2rem 2rem;
+    /*margin: 2rem 2rem 2rem 2rem;*/
     display: flex;
     justify-content: space-between;
     align-items:baseline;
     position:fixed; /*relative se mueve, lo saco y queda arriba, se va con el scroll*/
     z-index: 2;
-    background-color: #111111;
+    background-color: var(--button-delivery);
     margin-block:var(--body-background);
     max-width: 1920px;
     min-width: 100%;
-    padding-top: 2rem;
-    padding-right: 2rem;
-
-
-
+    padding: 2rem 2rem 1.5rem 2rem;
 }
     .title {
         color: var(--header-title);
@@ -77,8 +73,8 @@ html {
 
     .nav ul li {
         margin: 1rem;
-        font-size: large;
-        text-decoration: none;
+/*        font-size: large;
+        text-decoration: none;*/
         color: var(--nav-icons);
         border-radius: 3px;
         transition: background-color 4s;
@@ -95,14 +91,14 @@ html {
 /* #endregion */
 
 /* #region TODOS LOS PRODUCTOS */
-    #allProducts {
+    .allProducts {
         padding: 2rem;
         margin: 0rem 4rem;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        border-radius: 15;
+        /*border-radius: 15;*/
         /**/
-        padding-top:160px;
+        padding-top: 160px;
     }
     /*
     .filterType {
@@ -342,7 +338,7 @@ html {
 /* #endregion */
 
 /* #region MODAL SEARCHER*/
-    .searcher {
+    /*.searcher {
         background-color: var(--modal);
         top: 160px;
         width: 50rem;
@@ -353,7 +349,70 @@ html {
         border-radius: 30px;
         padding: 50px 40px;
         z-index: 2; 
+    }*/
+
+    .searcher {
+        background-color: var(--modal);
+        top:160px;
+        width: 50rem;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        border-radius: 30px;
+        padding: 50px 40px;
+        z-index: 2;
     }
+    
+    .searcher i {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        cursor: pointer;
+    }
+    
+    .searcher ul {
+        text-align: center;
+        margin: 1rem 0;
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .searcher li {
+        flex-basis: 32%;
+    }
+        
+    .searcher input,
+    .searcher select {
+        width: 100%;
+        padding: 0.5rem;
+        border-radius: 5px;
+        border: 1px solid var(--border);
+    }
+    .searcher #searcher__order, #searcher__type {
+        cursor: pointer;
+    }
+    
+    .searcher button {
+        border-style: hidden;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: medium;
+        background-color: var(--nav-counter);
+        padding: 0rem 2rem;
+        margin: 0rem 1rem;
+        font-weight: 700;
+        margin-right: 1rem;
+    }
+    
+    .searcher button:hover {
+        background-color: var(--hover-close);
+        transition: background-color 0.4s;
+    }
+    
 /* #endregion */
 
 /* #region ASIDE SEARCHER*/
@@ -386,3 +445,19 @@ html {
         margin-top: auto;
     }
 /* #endregion */
+
+
+.allCommands{
+    background-color: #c8c1c1;
+    padding: 0rem 5rem 5rem 5rem;
+}
+.allCommands .comandaTable {
+    border-collapse: collapse; /* Fusiona los bordes de las celdas adyacentes */
+    width: 100%;
+
+}
+
+.comandaTable th, .comandaTable td {
+  border: 1px solid black; /* Agrega un borde de 1px sólido de color negro */
+  padding: 8px; /* Añade un espacio interno de 8px entre el borde y el contenido */
+}
