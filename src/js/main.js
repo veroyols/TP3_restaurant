@@ -7,6 +7,7 @@ import FormaEntrega from '../components/section/FormaEntrega.js';
 import ComandaTicket from '../components/section/ComandaTicket.js';
 import Searcher from '../components/section/Searcher.js';
 import ComandaTable from '../components/section/ComandaTable.js';
+import SearcherCommands from '../components/section/SearcherCommands.js';
 
 //CARRITO
 var selectedProduct = []; 
@@ -49,7 +50,7 @@ const onListItemClick = (elements) => {
         }  else if (element.classList.contains('selectedProduct')) {
             element.addEventListener('click', () => openPreviewCommand())
         } else if (element.classList.contains('commands')) {
-            element.addEventListener('click', () => renderComands())
+            element.addEventListener('click', () => openModalSearchCommands())
         }
 
 
@@ -64,8 +65,10 @@ const onListItemClick = (elements) => {
             element.addEventListener('click', () => openNextModal()) 
         } else if (element.classList.contains('modal__finish')) { 
           element.addEventListener('click', () => createComanda()) 
-        }  else if (element.matches('#button__search')) { 
-            element.addEventListener('click', () => searchItems(element)) 
+        } else if (element.matches('#button__search')) { 
+            element.addEventListener('click', () => searchItems()) 
+        } else if (element.matches('#button__searchCommands')) { 
+            element.addEventListener('click', () => renderComands()) 
         }
     });
 }
@@ -249,8 +252,7 @@ const openModalSearch = () => {
 
 
 //NOMBRE TIPO ORDEN: enviar consulta
-const searchItems = async (el) => { 
-    console.log(el);
+const searchItems = async () => { 
     console.log('GET mercaderias')
     let allCommands = document.getElementById('allCommands');
     allCommands.innerHTML='';
@@ -289,11 +291,26 @@ const searchItems = async (el) => {
         onListItemClick(document.querySelectorAll('.modal__finish'))
 }
 
+//MODAL SEARCHER: buscar comandas
+const openModalSearchCommands = () => {
+    let section = document.getElementById('modalDetail')
+    let background = document.getElementById('background')
+    background.className = 'background'
+
+    section.innerHTML = SearcherCommands()
+
+    onListItemClick(document.querySelectorAll('#modal__close'))
+    onListItemClick(document.querySelectorAll('#button__searchCommands'))
+}
 
 //RENDER COMANDAS
 const renderComands = async () => {
+    const filterByDate = document.getElementById('searcher__date');
+    const date = filterByDate.value;
+    console.log(date)
+
     //limpiar
-    let comandas = await getComandas();
+    let comandas = await getComandas(date);
 //    let main = document.getElementById('allProducts').style.display='none'; //suben las comandas
     let main = document.getElementById('allProducts')
     main.innerHTML = '';
