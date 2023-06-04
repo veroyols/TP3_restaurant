@@ -6,21 +6,22 @@
 
 /* Defino variables */
 :root {
-    --nav-icons:#f8f8f8;
+    --nav-icons: #f8f8f8;
     --nav-icons-hover: #333333;
-    --body-background:#111111;
-    --header-title:#f8f8f8;
+    --body-background: #111111;
+    --header-title: #f8f8f8;
     --nav-counter: #f6af89;
-    --modal: /* rgb(201, 201, 213);*/#f4f4f4; 
+    --modal: #f4f4f4;
     --mercaderia-shadow: #031222;
-    --hover-close:#c8c1c1;
-    --footer:#1c1b1b;
-    --button-add:#dcd5d1;
-    --button-add-hover:#f6af89;
+    --hover-close: #c8c1c1;
+    --footer: #1c1b1b;
+    --button-add: #dcd5d1;
+    --button-add-hover: #f6af89;
     --pinterest-color: #cb2028;
     --red-color: #a11a1a;
-    --success: rgb(41, 178, 137);
-    --button-delivery:#ca7f56;
+    --success: #29b289;
+    --button-delivery: #ca7f56;
+    --transparent: rgba(0, 0, 0, 0.7); 
 
 }
 /*Por defecto del browser*/
@@ -189,7 +190,7 @@ html {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.7); 
+        background-color: var(--transparent);
         z-index:2;
     }
 /* #endregion */
@@ -450,7 +451,7 @@ html {
 
 
 .allCommands{
-    background-color: #c8c1c1;
+    background-color: var(--modal);
     padding: 0rem 5rem 5rem 5rem;
 }
 .allCommands .comandaTable {

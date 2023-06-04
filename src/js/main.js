@@ -21,11 +21,6 @@ const init = async () => {
     onListItemClick(document.querySelectorAll('.selectedProduct'))
     onListItemClick(document.querySelectorAll('.commands'))
 
-    //functions
-    onListItemClick(document.querySelectorAll('.open_detail'))
-    //onListItemClick(document.querySelectorAll('.selectorType'))
-    onListItemClick(document.querySelectorAll('.mercaderia__view'))
-    onListItemClick(document.querySelectorAll('.mercaderia__add'))
 }
 
 //RENDERProducts
@@ -35,6 +30,12 @@ const renderProducts = async () => {
     for (let i = 0; i < mercaderias.length; i++) {
         main.innerHTML += Mercaderia(mercaderias[i], selectedProduct);
     }
+    //functions
+    onListItemClick(document.querySelectorAll('.open_detail'))
+    //onListItemClick(document.querySelectorAll('.selectorType'))
+    onListItemClick(document.querySelectorAll('.mercaderia__view'))
+    onListItemClick(document.querySelectorAll('.mercaderia__add'))
+
 }
 
 window.onload = init;
