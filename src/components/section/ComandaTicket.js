@@ -31,9 +31,9 @@ const ComandaTicket = (response) => {
                         `}).join("")}
                         </tbody>
                     </table>
-                </div>
-                <div class="comandaDetail__buttons">
+                    </div>
                     <h3>Total $${response.total}</h3>
+                <div class="comandaDetail__buttons">
                     <button id="modal__close">Cerrar</button>
                 </div>
                 <i class="material-icons" id="modal__close" title="Cerrar">close</i>

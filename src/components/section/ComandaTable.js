@@ -1,19 +1,19 @@
 
-const ComandaTable = (response) => {
+const ComandaTable = (response, date) => {
     console.log(response);
     let ventas = 0;
     
     return  `
         <table class="comandaTable">
-            <tr><td colspan='7'>Resumen de ventas</td></tr>
+            <tr><td colspan='7'>${date ? 'Ventas del dia: ' + date : 'Total ventas'}</td></tr>
 
             <tr>
-                    <th rowspan="2">ID</th>
-                    <th rowspan="2">Fecha</th>
-                    <th colspan="3">Mercaderias</th>
-                    <th rowspan="2">Entrega</th>
-                    <th rowspan="2">Total</th>
-                </tr>
+                <th rowspan="2">ID</th>
+                <th rowspan="2">Fecha</th>
+                <th colspan="3">Mercaderias</th>
+                <th rowspan="2">Entrega</th>
+                <th rowspan="2">Total</th>
+            </tr>
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>

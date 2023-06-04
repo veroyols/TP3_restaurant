@@ -6,7 +6,39 @@
 
 /* Defino variables */
 :root {
-    --nav-icons: #f8f8f8;
+
+    --color-negro: #272525;
+    --color-blanco: #F2F2F2;
+    --color-blanco-azulado: #E6E6FA;
+    --color-grey: #5b5757;
+    --color-ok: #C5E1A5;
+    --color-blu: #c8daf4;
+    --color-shadow: #cbcbcc;
+    /*--color-blu: #c7d3e4;*/
+
+--header-title: var(--color-negro);
+--nav-icons:var(--color-negro);
+--transparent: rgba(0, 0, 0, 0.7); 
+
+--body-background:var(--color-blanco);
+--nav-icons-hover: var(--color-blanco);
+--button-delivery: var(--color-blanco);
+
+--header-back: var(--color-blanco-azulado);
+--modal:var(--color-blanco-azulado);
+--footer:var(--color-blanco-azulado);
+--nav-counter:var(--color-blanco-azulado);
+
+--color-font: var(--color-grey);
+--success: var(--color-ok);
+--button-add-hover: var(--color-ok);
+
+--icon-blue:var(--color-blu);
+--button-add: var(--color-blu);
+
+--mercaderia-shadow:var(--color-shadow);
+
+/*    --nav-icons: #f8f8f8;
     --nav-icons-hover: #333333;
     --body-background: #111111;
     --header-title: #f8f8f8;
@@ -18,30 +50,48 @@
     --button-add: #dcd5d1;
     --button-add-hover: #f6af89;
     --pinterest-color: #cb2028;
-    --red-color: #a11a1a;
+    --icon-blue: #a11a1a;
     --success: #29b289;
     --button-delivery: #ca7f56;
-    --transparent: rgba(0, 0, 0, 0.7); 
-
+    --transparent: rgba(0, 0, 0, 0.7); */
 }
+
 /*Por defecto del browser*/
 * {
     margin:0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-}
-td {
-    font-size: large;
-    color: var(--footer);
-    font-weight: bold;
+    color:var(--color-font);
     
 }
+/*
+td {
+    font-size: large;
+    color: var(--color-red);
+    font-weight: bold;
+    
+}*/
 html {
     max-width: 1920px;
     max-height: 1080px;
     background-color: var(--body-background);
 }
+
+#button__search:hover, 
+#button__searchCommands:hover, 
+#comandaCreateNext:hover,
+#formaEntregaSelected:hover{
+    background-color: var(--success);
+    transition: background-color 4s;
+
+}
+.button__searchCommands:hover{
+    background-color: var(--success);
+    transition: background-color 4s;
+
+}
+
 /* #region HEADER Y NAV */
 .header {
     /*margin: 2rem 2rem 2rem 2rem;*/
@@ -50,11 +100,11 @@ html {
     align-items:baseline;
     position:fixed; /*relative se mueve, lo saco y queda arriba, se va con el scroll*/
     z-index: 2;
-    background-color: var(--button-delivery);
-    margin-block:var(--body-background);
+    background-color: var(--header-back);
+    /*margin-block:var(--body-background);*/
     max-width: 1920px;
     min-width: 100%;
-    padding: 2rem 2rem 1.5rem 2rem;
+    padding: 1.5rem 2rem;
 }
     .title {
         color: var(--header-title);
@@ -69,55 +119,59 @@ html {
     .nav ul li {
         margin: 1rem;
 /*        font-size: large;
-        text-decoration: none;*/
+        text-decoration: none;
         color: var(--nav-icons);
+        */
         border-radius: 3px;
         transition: background-color 4s;
         padding: 0.5rem 1rem 0.1rem 1rem;
     }
     .nav ul li:hover {
-        background-color: var(--nav-icons-hover);
+        background-color: var(--color-blanco);
         cursor:pointer;
     }
+    .nav i {
+        font-size: 1.5rem;
+
+    }
     #counter {
-        color: var(--nav-counter);
+        color: var(--color-font);
         display:inline-block;
     }
 /* #endregion */
+
+
+.selectedProducts{
+    padding: 2rem;
+    margin: 0rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    /*border-radius: 15;*/
+    /**/
+    padding-top: 170px;
+}
+.clicked{
+    background-color: var(--color-blanco);
+}
+
 
 /* #region TODOS LOS PRODUCTOS */
     .allProducts {
         padding: 2rem;
         margin: 0rem 4rem;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         /*border-radius: 15;*/
         /**/
-        padding-top: 160px;
+        padding-top: 170px;
     }
-    /*
-    .filterType {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        
-        background-color: #f4f4f4;
-        top: 160px;
-        position:fixed;
-        margin-left: 4rem;
-        max-height: 76%;
-        max-width: 76%;
-        border-radius: 30px;
-        padding: 50px 40px;
-        align-items: center;
-        z-index: 2; 
-    }
-    */
+
         /* Componente Card Mercaderia*/
         .mercaderia {
             display: flex;
             flex-direction: column;
             
-            justify-content: space-between;
+            justify-content: center;
             background-color: var(--modal);
             padding: 0.5rem;
             margin-bottom: 1rem;
@@ -130,7 +184,14 @@ html {
             cursor:pointer;
         }
         h4 {
-            font-size: small;
+            font-size: 18px;
+            /*font-variant: small-caps;*/
+            font-weight: bold;
+            padding-bottom: 0.5rem;
+            text-align: center;
+        }
+        i {
+            color: #777777;
         }
             .mercaderia:hover {
                 box-shadow: 0px 0px 25px 10px var(--mercaderia-shadow);
@@ -177,7 +238,7 @@ html {
               }
               
               .mercaderia__add.buttonSelected:hover {
-                background-color: var(--red-color);
+                background-color: var(--icon-blue);
                 transition: background-color 3s;
               }
 
@@ -198,7 +259,7 @@ html {
 /* #region MODAL DETALLE DE MERCADERIA */
     .mercaderiaDetail{
         background-color: var(--modal);
-        top: 5rem;
+        top: 10rem;
         position:fixed;
         margin: 0rem 10rem;
         border-radius: 30px;
@@ -225,6 +286,8 @@ html {
     }            
     .mercaderiaDetail button {
         background-color:var(--button-add);
+        margin-top: 26rem;
+        padding: 0.5rem;
         align-self: end;
         border-style: hidden;
         cursor:pointer;
@@ -232,8 +295,15 @@ html {
         font-size: medium;
     }
     .mercaderiaDetail button:hover {
-        background-color:var(button-add-hover);
+        background-color:var(--color-shadow);
         transition: background-color 4s;
+    }
+    .mercaderiaDetail .mercaderia__content {
+        background-color:var(--color-blanco);
+        padding: 2rem 2rem 2rem 1rem;
+        margin-left: 2rem;
+        border-radius: 15px;
+
     }
 
 /* #endregion */
@@ -243,7 +313,7 @@ html {
         background-color: var(--modal);
         width: 50rem;
         position:absolute;
-        top: 5rem;
+        top: 10rem;
         left: 0; 
         right: 0;
         margin: auto;            
@@ -266,17 +336,18 @@ html {
         text-align:center;
         width: 100%;
     }
-    .comandaDetail .content {
-        background-color: var(--modal);
+    .comandaDetail .content, .comandaDetail h3 {
+        background-color: var(--color-blanco);
         border-radius: 30px;
-        padding: 50px 40px;
-        align-items: center;
-        align-content: center;
+        padding: 25px 20px;
+        margin: 25px 20px;
+        text-align: center;
+
     }
-    .comandaDetail .content h3{
-        text-align:right;
-        padding-top: 2rem;
-        padding-right: 1rem;
+    .comandaDetail .content h4{
+        text-align: center;
+        padding-top: 10px;
+        padding-left: 2rem;
     }
 
     .comandaDetail__buttons {
@@ -292,14 +363,14 @@ html {
         cursor:pointer;
         border-radius: 5px;
         font-size: medium;
-        background-color: var(--nav-counter);
+        background-color: var(--button-add);
         padding: 0rem 2rem;
         margin: 0rem 1rem;
         font-weight: 700;
 
     }
     .comandaDetail__buttons button:hover {
-        background-color:var(--hover-close);
+        background-color:var(--color-shadow);
         transition: background-color 4s;
     }
 
@@ -316,18 +387,18 @@ html {
         padding: 1rem;
         cursor:pointer;
         border:none;
-        background-color:var(--nav-counter);
+        background-color:var(--color-blanco);
         width: 27%;
         border-radius: 10px;
     }
     .options__delivery button:hover{
-        background-color: var(--button-delivery);
+        background-color: var(--color-ok);
         transform:scale(1.2);
         transition: background-color 2s;
     }
 
     .options__delivery button.selected{
-        background-color: var(--button-delivery);
+        background-color: var(--color-ok);
     }
 
 /* #endregion */
@@ -348,12 +419,13 @@ html {
 
     .searcher {
         background-color: var(--modal);
-        top: 4rem;
+        top: 10rem;
         width: 25rem;
         position: absolute;
         left: 0;
         right: 0;
         margin: auto;
+
         border-radius: 30px;
         padding: 50px 40px;
         z-index: 2;
@@ -378,7 +450,7 @@ html {
     
     .searcher li {
         flex-basis: 32%;
-        padding: 2rem;
+        padding: 1rem;
     }
     .searcher #searcher__date{
         margin-top: 1.5rem;
@@ -403,7 +475,7 @@ html {
         cursor: pointer;
         border-radius: 5px;
         font-size: medium;
-        background-color: var(--nav-counter);
+        background-color: var(--button-add);
         padding: 0rem 2rem;
         margin: 0rem 1rem;
         font-weight: 700;
@@ -411,7 +483,7 @@ html {
     }
     
     .searcher button:hover {
-        background-color: var(--hover-close);
+        background-color: var(--color-shadow);
         transition: background-color 0.4s;
     }
 
@@ -449,18 +521,21 @@ html {
     }
 /* #endregion */
 
-
+/* #region COMANDATABLE*/
 .allCommands{
-    background-color: var(--modal);
+    background-color: var(--body-background);
     padding: 0rem 5rem 5rem 5rem;
 }
+
 .allCommands .comandaTable {
-    border-collapse: collapse; /* Fusiona los bordes de las celdas adyacentes */
     width: 100%;
+    border-collapse: collapse; 
 
 }
 
 .comandaTable th, .comandaTable td {
-  border: 1px solid black; /* Agrega un borde de 1px sólido de color negro */
-  padding: 8px; /* Añade un espacio interno de 8px entre el borde y el contenido */
+  border: 1px solid black; 
+  padding: 8px;
 }
+   
+/*#endregion*/

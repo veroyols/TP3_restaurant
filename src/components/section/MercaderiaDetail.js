@@ -3,7 +3,7 @@ const MercaderiaDetail = (data) => {
     <article class="modalDetail" id="${data.id}">
         <div class="mercaderiaDetail">
             <img class="mercaderia__image" src="${data.imagen}" alt="Imagen del plato" />
-            <div>
+            <div class="mercaderia__content">
                 <h2 class="mercaderiaDetailRight">${data.nombre}</h2>
                 <p class="mercaderiaDetailRight">Categoria: ${data.tipo.descripcion}</p>
                 <br>

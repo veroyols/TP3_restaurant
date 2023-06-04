@@ -74,15 +74,37 @@ const onListItemClick = (elements) => {
     });
 }
 
+//pintar nav icons
+const clicked = (id) => { //id= home, clicked('search'), selectedProduct, clicked('commands')
+    //pinto icon nav
+    let nav = document.getElementById('navList')
+    console.log(nav.children)
+    for (let i = 0; i < nav.children.length; i++) {
+        const child =  nav.children[i];
+        console.log(child)
+        if(child.classList.contains('clicked')){
+            child.classList.remove('clicked')
+        }
+    }
+
+    let icon = document.getElementById(id)
+    icon.classList.add('clicked')
+}
 
 //limpiar
 const refresh = async () => {
-    let main = document.getElementById("allProducts");
+    
+    let main = document.getElementById('allProducts');
     main.innerHTML = '';
     clearSelectedProducts()
     let allCommands = document.getElementById('allCommands');
     allCommands.innerHTML ='';
+    if(main.classList.contains('selectedProducts')){
+        main.classList.remove('selectedProducts')
+        main.classList.add('allProducts')
+    }
     await renderProducts();
+    clicked('home')
 }
 
 //LIMPIAR CARRITO
@@ -195,9 +217,7 @@ const openNextModal = () => {
 }
 //Se selecciona la forma de entrega
 const selectFormaEntrega = (event) => {
-// scroll arriba*********************************************************************************
-alert('selectFormaEntrega')    
-const element = document.getElementById('up');
+    const element = document.getElementById('up');// scroll arriba*********************************************************************************
     const selected = event.target;
     const delivery = document.querySelectorAll('.options__delivery button');
 
@@ -257,11 +277,11 @@ const searchItems = async () => {
     console.log('GET mercaderias')
     let allCommands = document.getElementById('allCommands');
     allCommands.innerHTML='';
-
+    
     const filterByName = document.getElementById('searcher__name');
     const name = filterByName.value;
     console.log(name)
-
+    
     const filterByType = document.getElementById('searcher__type');
     const type = filterByType.value;
     console.log(type)
@@ -271,33 +291,41 @@ const searchItems = async () => {
     console.log(order)
     //let aside = document.getElementById('aside_search')
     //aside.style.display = 'block'
-
+    
     let main = document.getElementById('allProducts');
- ///cambiar css por searched products************************************************************
-
+    ///cambiar css por searched products****************************************************************************************
+    if(main.classList.contains('allProducts')){
+        main.classList.remove('allProducts')
+        main.classList.add('selectedProducts')
+    }
+    
     const filtered = await getMercaderias(type, name, order);
     console.log(filtered)
-
+    
     main.innerHTML = '';
-
+    
     closeModal();
-
+    
     for (let i = 0; i < filtered.length; i++) {
         main.innerHTML += Mercaderia(filtered[i], selectedProduct);
     }
-        //functions
-        onListItemClick(document.querySelectorAll('.open_detail'))
-        onListItemClick(document.querySelectorAll('.mercaderia__view'))
-        onListItemClick(document.querySelectorAll('.mercaderia__add'))
-        onListItemClick(document.querySelectorAll('.modal__finish'))
+    //functions
+    onListItemClick(document.querySelectorAll('.open_detail'))
+    onListItemClick(document.querySelectorAll('.mercaderia__view'))
+    onListItemClick(document.querySelectorAll('.mercaderia__add'))
+    onListItemClick(document.querySelectorAll('.modal__finish'))
+
+    clicked('search')
 }
 
 //MODAL SEARCHER: buscar comandas
-const openModalSearchCommands = () => {
+const openModalSearchCommands = () => {    
     let section = document.getElementById('modalDetail')
     let background = document.getElementById('background')
     background.className = 'background'
-
+    
+    const date = document.getElementById('searcher__date');
+    //setear el default value******************************************************************************************
     section.innerHTML = SearcherCommands()
 
     onListItemClick(document.querySelectorAll('#modal__close'))
@@ -312,10 +340,12 @@ const renderComands = async () => {
 
     //limpiar
     let comandas = await getComandas(date);
-//    let main = document.getElementById('allProducts').style.display='none'; //suben las comandas
     let main = document.getElementById('allProducts')
     main.innerHTML = '';
     let allCommands = document.getElementById('allCommands');
     allCommands.innerHTML='';
-    allCommands.innerHTML += ComandaTable(comandas);
+    allCommands.innerHTML += ComandaTable(comandas, date);
+    closeModal();
+    clicked('commands')
+
 }

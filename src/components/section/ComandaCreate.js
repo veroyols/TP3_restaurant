@@ -22,8 +22,10 @@ const ComandaCreate = async (list) => {
                     `}).join("")}
                     </tbody>
                 </table>
-                ${list.length > 0 ? `<h3>Total a pagar $${total}</h3>` : 'No se han seleccionado productos'}
-            </div>
+                ${list.length > 0 ? '' : `<h4>No se han seleccionado productos</h4>`}
+                </div>
+                ${list.length > 0 ? `<h3>Total a pagar $${total}</h3>` : ''}
+
             <div class="comandaDetail__buttons">
                 <button disabled id="comandaCreateNext" class="modal__next">Siguiente</button>
                 <button id="modal__close">Volver</button>
