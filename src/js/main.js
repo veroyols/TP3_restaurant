@@ -8,6 +8,7 @@ import ComandaTicket from '../components/section/ComandaTicket.js';
 import Searcher from '../components/section/Searcher.js';
 import ComandaTable from '../components/section/ComandaTable.js';
 import SearcherCommands from '../components/section/SearcherCommands.js';
+import AsideSearcherCommands from '../components/section/AsideSearcherCommands.js';
 
 //CARRITO
 var selectedProduct = []; 
@@ -25,10 +26,10 @@ const init = async () => {
 
 //RENDERProducts
 const renderProducts = async () => {
-    let main = document.getElementById('allProducts');
+    let section = document.getElementById('allProducts');
     let mercaderias = await getMercaderias();
     for (let i = 0; i < mercaderias.length; i++) {
-        main.innerHTML += Mercaderia(mercaderias[i], selectedProduct);
+        section.innerHTML += Mercaderia(mercaderias[i], selectedProduct);
     }
     //functions
     onListItemClick(document.querySelectorAll('.open_detail'))
@@ -51,7 +52,7 @@ const onListItemClick = (elements) => {
         }  else if (element.classList.contains('selectedProduct')) {
             element.addEventListener('click', () => openPreviewCommand())
         } else if (element.classList.contains('commands')) {
-            element.addEventListener('click', () => openModalSearchCommands())
+            element.addEventListener('click', () => renderTodayComands())
         }
 
 
@@ -69,7 +70,7 @@ const onListItemClick = (elements) => {
         } else if (element.matches('#button__search')) { 
             element.addEventListener('click', () => searchItems()) 
         } else if (element.matches('#button__searchCommands')) { 
-            element.addEventListener('click', () => renderComands()) 
+            element.addEventListener('click', () => SearchCommands()) 
         }
     });
 }
@@ -90,18 +91,51 @@ const clicked = (id) => { //id= home, clicked('search'), selectedProduct, clicke
     let icon = document.getElementById(id)
     icon.classList.add('clicked')
 }
+const showCommandAside = () => {
+    //mostrar aside
+    let aside = document.getElementById('aside_search')
+    let main = document.getElementById('main')
+    aside.style.display = 'block'
+    main.classList.add('slideMain')
 
-//limpiar
+    //if(!aside.classList.contains('animate')){
+        //aside.classList.add('animate');
+    //}
+    //desplazar main
+
+    //let section = document.getElementById('allProducts')
+    //if(section.classList.contains('allProducts')){
+    //    section.classList.remove('allProducts')
+    //}
+}
+const showCommandAsideOff = () => {
+
+        let aside = document.getElementById('aside_search')
+        let main = document.getElementById('main')
+        aside.style.display = 'none'
+        main.classList.remove('slideMain')
+    //if(aside.classList.contains('animate')){
+      //  aside.classList.remove('animate');
+    //}
+     //   if(main.classlist.contains('slideMain')){
+       // }
+    //let section = document.getElementById('allProducts')
+    //if(!section.classList.contains('allProducts')){
+    //    section.classList.add('allProducts')
+    //}
+}
+//limpiar //home
 const refresh = async () => {
+    showCommandAsideOff();
     
-    let main = document.getElementById('allProducts');
-    main.innerHTML = '';
+    let section = document.getElementById('allProducts');
+    section.innerHTML = '';
     clearSelectedProducts()
     let allCommands = document.getElementById('allCommands');
     allCommands.innerHTML ='';
-    if(main.classList.contains('selectedProducts')){
-        main.classList.remove('selectedProducts')
-        main.classList.add('allProducts')
+    if(section.classList.contains('selectedProducts')){
+        section.classList.remove('selectedProducts')
+        section.classList.add('allProducts')
     }
     await renderProducts();
     clicked('home')
@@ -179,6 +213,9 @@ const closeModal = () => {
 
 //PREVIEW COMANDA
 const openPreviewCommand = async () => {
+    //showCommandAsideOff();
+
+
     let section = document.getElementById('modalDetail');
 
     let background = document.getElementById('background');
@@ -261,6 +298,9 @@ const createComanda = async () => {
 
 //MODAL SEARCHER: opciones de busqueda
 const openModalSearch = () => {
+    //showCommandAsideOff();
+
+
     let section = document.getElementById('modalDetail')
     let background = document.getElementById('background')
     background.className = 'background'
@@ -291,13 +331,14 @@ const searchItems = async () => {
     console.log(order)
     //let aside = document.getElementById('aside_search')
     //aside.style.display = 'block'
-    
+    showCommandAsideOff();
     let main = document.getElementById('allProducts');
     ///cambiar css por searched products****************************************************************************************
     if(main.classList.contains('allProducts')){
         main.classList.remove('allProducts')
         main.classList.add('selectedProducts')
     }
+    //showProductAside();***********************************************************************************************
     
     const filtered = await getMercaderias(type, name, order);
     console.log(filtered)
@@ -319,33 +360,56 @@ const searchItems = async () => {
 }
 
 //MODAL SEARCHER: buscar comandas
-const openModalSearchCommands = () => {    
+/*const openModalSearchCommands = () => {    
     let section = document.getElementById('modalDetail')
     let background = document.getElementById('background')
     background.className = 'background'
     
-    const date = document.getElementById('searcher__date');
-    //setear el default value******************************************************************************************
     section.innerHTML = SearcherCommands()
+    //setear el default value******************************************************************************************
+    const date = document.getElementById('searcher__date');
+    console.log(date);
+    date.valueAsDate = new Date()
 
     onListItemClick(document.querySelectorAll('#modal__close'))
     onListItemClick(document.querySelectorAll('#button__searchCommands'))
-}
+}*/
 
 //RENDER COMANDAS
-const renderComands = async () => {
-    const filterByDate = document.getElementById('searcher__date');
-    const date = filterByDate.value;
-    console.log(date)
+const renderTodayComands = async () => { //+3h
+    clicked('commands')
+    //comandas de hoy 
+    const dateTime = new Date()
+    const date = dateTime.toISOString().split('T')
+    let comandas = await getComandas(date[0]);
 
-    //limpiar
+    
+    let section = document.getElementById('allProducts')
+    section.innerHTML = '';
+    let allCommands = document.getElementById('allCommands');
+    allCommands.innerHTML='';
+    allCommands.innerHTML += ComandaTable(comandas, date[0]);
+    
+    //closeModal();
+    
+    let aside = document.getElementById('aside_search')
+    aside.innerHTML = AsideSearcherCommands();
+    showCommandAside();
+    
+    let inputDate = document.getElementById('searcher__date');
+    inputDate.value = date[0]
+
+    onListItemClick(document.querySelectorAll('#button__searchCommands'))
+}
+
+const SearchCommands = async () => {    
+    const filterByDate = document.getElementById('searcher__date');
+    console.log(filterByDate);
+    const date = filterByDate.value;
     let comandas = await getComandas(date);
-    let main = document.getElementById('allProducts')
-    main.innerHTML = '';
     let allCommands = document.getElementById('allCommands');
     allCommands.innerHTML='';
     allCommands.innerHTML += ComandaTable(comandas, date);
-    closeModal();
-    clicked('commands')
 
+    onListItemClick(document.querySelectorAll('#button__searchCommands'))
 }

@@ -6,7 +6,6 @@
 
 /* Defino variables */
 :root {
-
     --color-negro: #272525;
     --color-blanco: #F2F2F2;
     --color-blanco-azulado: #E6E6FA;
@@ -14,49 +13,31 @@
     --color-ok: #C5E1A5;
     --color-blu: #c8daf4;
     --color-shadow: #cbcbcc;
-    /*--color-blu: #c7d3e4;*/
 
---header-title: var(--color-negro);
---nav-icons:var(--color-negro);
---transparent: rgba(0, 0, 0, 0.7); 
+    --header-title: var(--color-negro);
+    --nav-icons:var(--color-negro);
+    --transparent: rgba(0, 0, 0, 0.7); 
 
---body-background:var(--color-blanco);
---nav-icons-hover: var(--color-blanco);
---button-delivery: var(--color-blanco);
+    --body-background:var(--color-blanco);
+    --nav-icons-hover: var(--color-blanco);
+    --button-delivery: var(--color-blanco);
 
---header-back: var(--color-blanco-azulado);
---modal:var(--color-blanco-azulado);
---footer:var(--color-blanco-azulado);
---nav-counter:var(--color-blanco-azulado);
+    --header-back: var(--color-blanco-azulado);
+    --modal:var(--color-blanco-azulado);
+    --footer:var(--color-blanco-azulado);
+    --nav-counter:var(--color-blanco-azulado);
 
---color-font: var(--color-grey);
---success: var(--color-ok);
---button-add-hover: var(--color-ok);
+    --color-font: var(--color-grey);
+    --success: var(--color-ok);
+    --button-add-hover: var(--color-ok);
 
---icon-blue:var(--color-blu);
---button-add: var(--color-blu);
+    --icon-blue:var(--color-blu);
+    --button-add: var(--color-blu);
 
---mercaderia-shadow:var(--color-shadow);
-
-/*    --nav-icons: #f8f8f8;
-    --nav-icons-hover: #333333;
-    --body-background: #111111;
-    --header-title: #f8f8f8;
-    --nav-counter: #f6af89;
-    --modal: #f4f4f4;
-    --mercaderia-shadow: #031222;
-    --hover-close: #c8c1c1;
-    --footer: #1c1b1b;
-    --button-add: #dcd5d1;
-    --button-add-hover: #f6af89;
-    --pinterest-color: #cb2028;
-    --icon-blue: #a11a1a;
-    --success: #29b289;
-    --button-delivery: #ca7f56;
-    --transparent: rgba(0, 0, 0, 0.7); */
+    --mercaderia-shadow:var(--color-shadow);
 }
 
-/*Por defecto del browser*/
+/*#region DEFAULT*/
 * {
     margin:0;
     padding: 0;
@@ -65,43 +46,37 @@
     color:var(--color-font);
     
 }
-/*
-td {
-    font-size: large;
-    color: var(--color-red);
-    font-weight: bold;
-    
-}*/
+
 html {
     max-width: 1920px;
     max-height: 1080px;
     background-color: var(--body-background);
 }
+/*#endregion*/
 
+/*#region BUTTON*/
 #button__search:hover, 
 #button__searchCommands:hover, 
 #comandaCreateNext:hover,
 #formaEntregaSelected:hover{
     background-color: var(--success);
     transition: background-color 4s;
-
 }
 .button__searchCommands:hover{
     background-color: var(--success);
     transition: background-color 4s;
-
 }
+/*#endregion*/
+
 
 /* #region HEADER Y NAV */
 .header {
-    /*margin: 2rem 2rem 2rem 2rem;*/
     display: flex;
     justify-content: space-between;
     align-items:baseline;
-    position:fixed; /*relative se mueve, lo saco y queda arriba, se va con el scroll*/
+    position:fixed; 
     z-index: 2;
     background-color: var(--header-back);
-    /*margin-block:var(--body-background);*/
     max-width: 1920px;
     min-width: 100%;
     padding: 1.5rem 2rem;
@@ -115,13 +90,8 @@ html {
         display: flex;
         list-style-type: none;
     }
-
     .nav ul li {
         margin: 1rem;
-/*        font-size: large;
-        text-decoration: none;
-        color: var(--nav-icons);
-        */
         border-radius: 3px;
         transition: background-color 4s;
         padding: 0.5rem 1rem 0.1rem 1rem;
@@ -132,7 +102,6 @@ html {
     }
     .nav i {
         font-size: 1.5rem;
-
     }
     #counter {
         color: var(--color-font);
@@ -141,28 +110,26 @@ html {
 /* #endregion */
 
 
+/*#region SELECT PRODUCTS*/
 .selectedProducts{
     padding: 2rem;
     margin: 0rem 4rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    /*border-radius: 15;*/
-    /**/
     padding-top: 170px;
 }
 .clicked{
     background-color: var(--color-blanco);
 }
+/*#endregion*/
 
 
-/* #region TODOS LOS PRODUCTOS */
+/*#region ALL PRODUCTOS */
     .allProducts {
         padding: 2rem;
         margin: 0rem 4rem;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        /*border-radius: 15;*/
-        /**/
         padding-top: 170px;
     }
 
@@ -170,7 +137,6 @@ html {
         .mercaderia {
             display: flex;
             flex-direction: column;
-            
             justify-content: center;
             background-color: var(--modal);
             padding: 0.5rem;
@@ -185,7 +151,6 @@ html {
         }
         h4 {
             font-size: 18px;
-            /*font-variant: small-caps;*/
             font-weight: bold;
             padding-bottom: 0.5rem;
             text-align: center;
@@ -210,7 +175,6 @@ html {
                 justify-content: center;
                 align-items: center;
                 font-size: small;
-
             }
             .mercaderia__add {
                 margin: 7px;
@@ -226,25 +190,20 @@ html {
             .mercaderia__add:hover , .mercaderia__add.buttonNonSelected:hover{
                 background-color: var(--success);
                 transition: background-color 4s;
-            }              
-             
-
+            }
             .mercaderia__add.buttonNonSelected {
                 background-color: var(--button-add);
             }
-              
-              .mercaderia__add.buttonSelected {
-                background-color:var(--success);
-              }
-              
-              .mercaderia__add.buttonSelected:hover {
-                background-color: var(--icon-blue);
-                transition: background-color 3s;
-              }
-
+            .mercaderia__add.buttonSelected {
+            background-color:var(--success);
+            }
+            .mercaderia__add.buttonSelected:hover {
+            background-color: var(--icon-blue);
+            transition: background-color 3s;
+            }
 /* #endregion */
 
-/* #region BACKGROUND */
+/*#region BACKGROUND */
     .background {
         position: fixed;
         top: 0;
@@ -252,11 +211,11 @@ html {
         width: 100%;
         height: 100%;
         background-color: var(--transparent);
-        z-index:2;
+        z-index:3;
     }
 /* #endregion */
 
-/* #region MODAL DETALLE DE MERCADERIA */
+/*#region MODAL DETALLE DE MERCADERIA */
     .mercaderiaDetail{
         background-color: var(--modal);
         top: 10rem;
@@ -264,7 +223,7 @@ html {
         margin: 0rem 10rem;
         border-radius: 30px;
         padding: 50px 40px;
-        z-index: 2; 
+        z-index: 4; 
         display: flex;
         justify-content: center;
         align-items: center;
@@ -303,12 +262,10 @@ html {
         padding: 2rem 2rem 2rem 1rem;
         margin-left: 2rem;
         border-radius: 15px;
-
     }
-
 /* #endregion */
 
-/* #region MODAL DE COMANDA*/
+/*#region MODAL DE COMANDA*/
     .comandaDetail {
         background-color: var(--modal);
         width: 50rem;
@@ -321,7 +278,7 @@ html {
         padding: 50px 40px;
         align-items: center;
         align-content: center;
-        z-index: 2; 
+        z-index: 4; 
     }
     .comandaDetail i {
         position: absolute;
@@ -357,7 +314,6 @@ html {
         align-items: center;
         align-content: center;
     }
-
     .comandaDetail__buttons button {
         border-style: hidden;
         cursor:pointer;
@@ -367,13 +323,11 @@ html {
         padding: 0rem 2rem;
         margin: 0rem 1rem;
         font-weight: 700;
-
     }
     .comandaDetail__buttons button:hover {
         background-color:var(--color-shadow);
         transition: background-color 4s;
     }
-
 /* #endregion */
 
 /* #region FORMA DE ENTREGA */
@@ -396,11 +350,9 @@ html {
         transform:scale(1.2);
         transition: background-color 2s;
     }
-
     .options__delivery button.selected{
         background-color: var(--color-ok);
     }
-
 /* #endregion */
 
 /* #region MODAL SEARCHER*/
@@ -428,7 +380,7 @@ html {
 
         border-radius: 30px;
         padding: 50px 40px;
-        z-index: 2;
+        z-index: 5;
     }
     
     .searcher i {
@@ -490,22 +442,6 @@ html {
     
 /* #endregion */
 
-/* #region ASIDE SEARCHER*/
-#aside_search {
-    position:absolute; 
-    /*relative se mueve, fixed fijo, absolute en relacion al otro*/
-    background-color: var(--modal);
-    right: 0px;
-    width: 300px;
-    top: 137px;
-    bottom: 40px;
-    border-radius: 30px;
-    padding: 50px 40px;
-    z-index: 2; 
-    display: none;
-}
-/* #endregion */
-
 /* #region FOOTER */
     footer {
         color: var(--header-title);
@@ -518,24 +454,89 @@ html {
         bottom: 0;
         width: 100%;
         margin-top: auto;
+        z-index: 2; 
     }
 /* #endregion */
 
-/* #region COMANDATABLE*/
-.allCommands{
-    background-color: var(--body-background);
-    padding: 0rem 5rem 5rem 5rem;
-}
+/* #region COMANDAS*/
+    .tableArrows{
+        position: relative;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+    }
+    #tableArrows__up, #tableArrows__down {
+        color: red;
+        left: 14rem;
+        position: fixed;
+        z-index: 3;
+    }
+    #tableArrows__up {
+        top: 9.5rem;
+    }
+    #tableArrows__down {
+        top: 14.7rem;
+    }
 
-.allCommands .comandaTable {
-    width: 100%;
-    border-collapse: collapse; 
-
-}
-
-.comandaTable th, .comandaTable td {
-  border: 1px solid black; 
-  padding: 8px;
-}
-   
+    .allCommands{
+        background-color: var(--body-background);
+        padding: 10rem 5rem 5rem 5rem;
+        top: 200px;
+    }
+    .allCommands .comandaTable {
+        width: 100%;
+        border-collapse: collapse; 
+        border-top: 1px solid #777777;
+        border-bottom: 1px solid #777777;
+    }
+    .comandaTable th, .comandaTable td {
+        border-top: 1px solid #777777;
+        border-bottom: 1px solid #777777;
+        padding: 1rem;
+        text-align: center;
+    }
+        .comandaTable .impar, .comandaTable .par{
+            background-color: var(--color-blanco);
+        }
+        .comandaTable .impar:hover, .comandaTable .par:hover{
+            background-color: var(--color-blanco-azulado);
+            transition: background-color 0.2s;
+        }
+        #rowProduct {
+            padding: 0;
+        }
+        #totalVentas {
+            font-size: large;
+            font-weight: bold;
+        }
 /*#endregion*/
+
+
+/* #region ASIDE SEARCHER*/
+    .slideMain { 
+        float: right; width: 80%;
+    }
+    #aside_search { 
+        display: none;
+        position:fixed; 
+        background-color: var(--color-blu);
+        top:120px;
+        width: 20%;
+        height: 100%;
+        z-index: 3; 
+        padding-bottom: 10px;
+        justify-content:end;
+    }
+
+    /*#aside_search .animate {
+        transform: translate(-200%);
+        transition-property: transform;
+        transition-duration: 2s;
+        transition-timing-function:linear;
+    }*/
+
+    /*buscador*/
+    #asideSearcherCommands{
+        height: 100%;
+        margin: 2rem;
+    }
+/* #endregion */

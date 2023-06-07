@@ -36,7 +36,7 @@ const ComandaTicket = (response) => {
                 <div class="comandaDetail__buttons">
                     <button id="modal__close">Cerrar</button>
                 </div>
-                <i class="material-icons" id="modal__close" title="Cerrar">close</i>
+                <i class="material-icons" id="modal__close" title="Cerrar"><a href='#'>close</a></i>
             </div>    
         </article>
         `

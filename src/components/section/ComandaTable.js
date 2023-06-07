@@ -4,8 +4,9 @@ const ComandaTable = (response, date) => {
     let ventas = 0;
     
     return  `
+    <div class="tableAndArrow">
         <table class="comandaTable">
-            <tr><td colspan='7'>${date ? 'Ventas del dia: ' + date : 'Total ventas'}</td></tr>
+            <tr><td colspan='7'><h3>${date ? 'Ventas del dia: ' + date : 'Total ventas'}</h3></td></tr>
 
             <tr>
                 <th rowspan="2">ID</th>
@@ -26,27 +27,31 @@ const ComandaTable = (response, date) => {
                 let otrasMercaderias = '';
                 if (count > 1) {
                     for (let i = 1; i < mercaderias.length; i++) {
-                        otrasMercaderias +=`<tr><td>${mercaderias[i].id}</td><td>${mercaderias[i].nombre}</td><td>$ ${mercaderias[i].precio}</td></tr>`;
+                        otrasMercaderias +=`<tr class=${index%2 == 0 ? 'par':'impar'} ><td id="rowProduct" >${mercaderias[i].id}</td><td id="rowProduct" >${mercaderias[i].nombre}</td><td id="rowProduct" >$ ${mercaderias[i].precio}</td></tr>`;
                     }
                 }
                 let fecha = comanda.fecha.split('T')
 
                 return `
-                    <tr>
+                <tr >
                         <td rowspan=${count}>${comanda.id}</td>
                         <td rowspan=${count}>${fecha[0]}</td>
-                        <td>${mercaderias[0].id}</td>
-                        <td>${mercaderias[0].nombre}</td>
-                        <td>$ ${mercaderias[0].precio}</td>
+                        <td id="rowProduct" class=${index%2 == 0 ? 'par':'impar'} >${mercaderias[0].id}</td>
+                        <td id="rowProduct" class=${index%2 == 0 ? 'par':'impar'} >${mercaderias[0].nombre}</td>
+                        <td id="rowProduct" class=${index%2 == 0 ? 'par':'impar'} >$ ${mercaderias[0].precio}</td>
                         <td rowspan=${count}>${comanda.formaEntrega.descripcion}</td>
                         <td rowspan=${count}>$ ${comanda.total}</td>
-                    </tr>
                     ${otrasMercaderias}
+                    </tr>
                     `
                 }).join('')
             }
-            <tr><td colspan='7'>Total ventas: $${ventas} </td></tr>
+            <tr id='totalVentas'><td colspan='7'>Total ventas: $${ventas} </td></tr>
         </table> 
+        <div class="tableArrows">
+            <a href='#' id="tableArrows__up"><i class="material-icons" title="Inicio">keyboard_double_arrow_up</i></a>
+            <a href='#foot' id="tableArrows__down"><i class="material-icons" title="Fin">keyboard_double_arrow_down</i></a>
+        </div>
     `
 }
     

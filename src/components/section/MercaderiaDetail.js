@@ -17,6 +17,6 @@ const MercaderiaDetail = (data) => {
             <i class="material-icons" id="modal__close" title="Cerrar">close</i>
         </div>
     </article>
-    `
+    ` 
 }
 export default MercaderiaDetail; 

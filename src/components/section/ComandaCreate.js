@@ -27,7 +27,7 @@ const ComandaCreate = async (list) => {
                 ${list.length > 0 ? `<h3>Total a pagar $${total}</h3>` : ''}
 
             <div class="comandaDetail__buttons">
-                <button disabled id="comandaCreateNext" class="modal__next">Siguiente</button>
+                <button disabled id="comandaCreateNext" class="modal__next"><a href='#'>Siguiente</a></button>
                 <button id="modal__close">Volver</button>
             </div>
             <i class="material-icons" id="modal__close" title="Cerrar">close</i>

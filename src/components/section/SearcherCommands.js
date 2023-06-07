@@ -6,7 +6,7 @@ const SearcherCommands = () => {
             <h2>Buscar comandas</h2>
             <p class="mercaderiaDetailRight">Filtre comandas por fecha</p>
             <form method="get">
-                <input id="searcher__date" type="date">
+                <input id="searcher__date" type="date" >
            </form>
         <button id="button__searchCommands" title="Buscar">Buscar</button>
         <button title="Cerrar" id="modal__close">Cerrar</button>
