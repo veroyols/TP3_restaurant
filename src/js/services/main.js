@@ -11,8 +11,7 @@ import SearcherCommands from '../components/section/SearcherCommands.js';
 import AsideSearcherCommands from '../components/section/AsideSearcherCommands.js';
 
 //CARRITO
-var selectedProduct = []; 
-//[''] /*local storage*/
+//var selectedProduct = []; 
 
 const init = async () => {
     renderProducts();
@@ -26,17 +25,20 @@ const init = async () => {
 
 //RENDERProducts
 const renderProducts = async () => {
+    localStorage.clear()
+    let selectedProduct = [];
+    localStorage.setItem('selectedProduct', JSON.stringify(selectedProduct));
+
     let section = document.getElementById('allProducts');
     let mercaderias = await getMercaderias();
     for (let i = 0; i < mercaderias.length; i++) {
-        section.innerHTML += Mercaderia(mercaderias[i], selectedProduct);
+        section.innerHTML += Mercaderia(mercaderias[i]);
     }
     //functions
     onListItemClick(document.querySelectorAll('.open_detail'))
     //onListItemClick(document.querySelectorAll('.selectorType'))
     onListItemClick(document.querySelectorAll('.mercaderia__view'))
     onListItemClick(document.querySelectorAll('.mercaderia__add'))
-
 }
 
 window.onload = init;
@@ -87,42 +89,22 @@ const clicked = (id) => { //id= home, clicked('search'), selectedProduct, clicke
             child.classList.remove('clicked')
         }
     }
-
     let icon = document.getElementById(id)
     icon.classList.add('clicked')
 }
+
 const showCommandAside = () => {
     //mostrar aside
     let aside = document.getElementById('aside_search')
     let main = document.getElementById('main')
     aside.style.display = 'block'
     main.classList.add('slideMain')
-
-    //if(!aside.classList.contains('animate')){
-        //aside.classList.add('animate');
-    //}
-    //desplazar main
-
-    //let section = document.getElementById('allProducts')
-    //if(section.classList.contains('allProducts')){
-    //    section.classList.remove('allProducts')
-    //}
 }
 const showCommandAsideOff = () => {
-
-        let aside = document.getElementById('aside_search')
-        let main = document.getElementById('main')
-        aside.style.display = 'none'
-        main.classList.remove('slideMain')
-    //if(aside.classList.contains('animate')){
-      //  aside.classList.remove('animate');
-    //}
-     //   if(main.classlist.contains('slideMain')){
-       // }
-    //let section = document.getElementById('allProducts')
-    //if(!section.classList.contains('allProducts')){
-    //    section.classList.add('allProducts')
-    //}
+    let aside = document.getElementById('aside_search')
+    let main = document.getElementById('main')
+    aside.style.display = 'none'
+    main.classList.remove('slideMain')
 }
 //limpiar //home
 const refresh = async () => {
@@ -145,6 +127,9 @@ const refresh = async () => {
 const clearSelectedProducts = () => {
     if(document.querySelector('.mercaderia__add')) {
         //limpiar productos seleccionados
+        let storage = localStorage.getItem('selectedProduct');
+        let selectedProduct = JSON.parse(storage);
+
         for (let i = 0; i < selectedProduct.length; i++) { //codigo duplicado
             console.log('for')
             console.log(selectedProduct)
@@ -157,18 +142,22 @@ const clearSelectedProducts = () => {
                 icon.textContent = 'add_circle_outline'
                 button.classList.remove('buttonSelected');
                 button.classList.add('buttonNonSelected');
-
             }
         }
     }
     //contador en nav
-    selectedProduct = [];
+    localStorage.clear()
+    let selectedProduct = [];
+    localStorage.setItem('selectedProduct', JSON.stringify(selectedProduct));
     let counter = document.getElementById('counter');
     counter.textContent = `(${selectedProduct.length})`;        
 }
 
 //AGREGAR PRODUCTO AL CARRITO
 const addMercaderiaToCart = (id) => {
+    let storage = localStorage.getItem('selectedProduct');
+    let selectedProduct = JSON.parse(storage);
+
     const button = document.querySelector(`.mercaderia__add[id='${id}']`);
     const icon = button.querySelector('i');
 
@@ -190,6 +179,8 @@ const addMercaderiaToCart = (id) => {
     //contador en nav
     let counter = document.getElementById('counter');
     counter.textContent = `(${selectedProduct.length})`;
+    localStorage.setItem('selectedProduct', JSON.stringify(selectedProduct));
+
 }
 
 //DETALLE DEL PRODUCTO
@@ -214,7 +205,8 @@ const closeModal = () => {
 //PREVIEW COMANDA
 const openPreviewCommand = async () => {
     //showCommandAsideOff();
-
+    let storage = localStorage.getItem('selectedProduct');
+    let selectedProduct = JSON.parse(storage)
 
     let section = document.getElementById('modalDetail');
 
@@ -254,7 +246,6 @@ const openNextModal = () => {
 }
 //Se selecciona la forma de entrega
 const selectFormaEntrega = (event) => {
-    const element = document.getElementById('up');// scroll arriba*********************************************************************************
     const selected = event.target;
     const delivery = document.querySelectorAll('.options__delivery button');
 
@@ -277,6 +268,8 @@ const createComanda = async () => {
             formaEntrega = delivery[i].value;
         }  
     }
+    let storage = localStorage.getItem('selectedProduct');
+    let selectedProduct = JSON.parse(storage)
 
     const body = 
     {
@@ -287,7 +280,6 @@ const createComanda = async () => {
     
     //limpiar
     refresh();
-    clearSelectedProducts();
 
     let section = document.getElementById('modalDetail');
     section.innerHTML = ComandaTicket(response)

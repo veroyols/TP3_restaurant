@@ -13,8 +13,10 @@ const MercaderiaDetail = (data) => {
                 <br>
                 <p class="mercaderiaDetailText">Precio $${data.precio}</p>
             </div>
-            <button title="Cerrar" id="modal__close">Cerrar</button>
-            <i class="material-icons" id="modal__close" title="Cerrar">close</i>
+            <div class="mercaderia__close">
+                <i class="material-icons" id="modal__close" title="Cerrar">close</i>
+                <button title="Cerrar" id="modal__close">Cerrar</button>
+            </div>
         </div>
     </article>
     ` 

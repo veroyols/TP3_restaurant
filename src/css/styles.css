@@ -93,7 +93,7 @@ html {
     .nav ul li {
         margin: 1rem;
         border-radius: 3px;
-        transition: background-color 4s;
+        transition: background-color 2s;
         padding: 0.5rem 1rem 0.1rem 1rem;
     }
     .nav ul li:hover {
@@ -129,7 +129,7 @@ html {
         padding: 2rem;
         margin: 0rem 4rem;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: repeat(6, 1fr);
         padding-top: 170px;
     }
 
@@ -144,6 +144,7 @@ html {
             margin-right: 0.5rem;
             margin-left: 0.5rem;
             border-radius: 10px;
+            transition-duration: 1s;
         }
 
         .open_detail{
@@ -161,6 +162,8 @@ html {
             .mercaderia:hover {
                 box-shadow: 0px 0px 25px 10px var(--mercaderia-shadow);
                 transform:scale(1.2);
+                transition-duration: 1s;
+
             }
             .mercaderia__image {
                 max-width: 100%;
@@ -211,7 +214,7 @@ html {
         width: 100%;
         height: 100%;
         background-color: var(--transparent);
-        z-index:3;
+        z-index:4;
     }
 /* #endregion */
 
@@ -225,11 +228,11 @@ html {
         padding: 50px 40px;
         z-index: 4; 
         display: flex;
-        justify-content: center;
-        align-items: center;
+        justify-content: center; 
+        align-items: center; 
     }
     .mercaderiaDetail img {
-        max-width:500px ;
+        max-height:417px ;
     }
     .mercaderiaDetail i{
         align-self: start;
@@ -242,10 +245,16 @@ html {
     }
     .mercaderiaDetail div .mercaderiaDetailRight {
         text-align: right;
-    }            
+    }
+    .mercaderiaDetail .mercaderia__close {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+    }
     .mercaderiaDetail button {
         background-color:var(--button-add);
-        margin-top: 26rem;
+        margin-top: 28rem;
         padding: 0.5rem;
         align-self: end;
         border-style: hidden;
@@ -262,6 +271,7 @@ html {
         padding: 2rem 2rem 2rem 1rem;
         margin-left: 2rem;
         border-radius: 15px;
+        height: 417px;
     }
 /* #endregion */
 
@@ -380,7 +390,7 @@ html {
 
         border-radius: 30px;
         padding: 50px 40px;
-        z-index: 5;
+        z-index: 4;
     }
     
     .searcher i {
@@ -450,11 +460,9 @@ html {
         flex-direction: column;
         align-items: center;
         padding: 1rem;
-        position:relative;
-        bottom: 0;
+        position:static;
         width: 100%;
         margin-top: auto;
-        z-index: 2; 
     }
 /* #endregion */
 
@@ -462,25 +470,26 @@ html {
     .tableArrows{
         position: relative;
         display: grid;
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: repeat(2, 1fr);
     }
     #tableArrows__up, #tableArrows__down {
         color: red;
-        left: 14rem;
+        right: 1rem;
         position: fixed;
-        z-index: 3;
+        z-index: 5;
+        align-content: center;
     }
     #tableArrows__up {
-        top: 9.5rem;
+        top: 10rem;
     }
     #tableArrows__down {
-        top: 14.7rem;
+        bottom: 10rem;
     }
 
     .allCommands{
         background-color: var(--body-background);
-        padding: 10rem 5rem 5rem 5rem;
-        top: 200px;
+        padding: 0rem 5rem 5rem 5rem;
+        top: 0px;
     }
     .allCommands .comandaTable {
         width: 100%;
@@ -516,23 +525,35 @@ html {
         float: right; width: 80%;
     }
     #aside_search { 
-        display: none;
+        /*display: none;*/
+        display:block;
         position:fixed; 
         background-color: var(--color-blu);
         top:120px;
         width: 20%;
         height: 100%;
-        z-index: 3; 
         padding-bottom: 10px;
         justify-content:end;
-    }
-
-    /*#aside_search .animate {
-        transform: translate(-200%);
+        transform: translateX(-100%);
         transition-property: transform;
         transition-duration: 2s;
-        transition-timing-function:linear;
-    }*/
+        transition-timing-function:ease;
+        z-index: 3; 
+        cursor: pointer;
+    }
+    #aside_search.animate { 
+        transform: translateX(-80%);
+        transition-property: transform;
+        transition-duration: 1s;
+        transition-timing-function:ease;
+    }
+
+    #aside_search:hover {
+        transform: translateX(0%);
+        transition-property: transform;
+        transition-duration: 2s;
+        transition-timing-function:ease;
+    }
 
     /*buscador*/
     #asideSearcherCommands{

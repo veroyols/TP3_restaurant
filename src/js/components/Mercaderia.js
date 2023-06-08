@@ -1,5 +1,4 @@
-const Mercaderia = (data, selectedProduct) => {
-    let buttonText = selectedProduct.includes(data.id) ? 'Quitar' : 'Agregar';
+const Mercaderia = (data) => {
 
     return `
     <article class="mercaderia" id="${data.id}">

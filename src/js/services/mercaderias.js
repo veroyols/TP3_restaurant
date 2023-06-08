@@ -1,6 +1,6 @@
 const URL = 'https://localhost:7137/api/v1/Mercaderia'
 
-const getMercaderias = async (tipo = '', nombre = '', orden = '') => { //?tipo=5&nombre=rucula&orden=ASC
+const getMercaderias = async (tipo = '', nombre = '', orden = '') => { 
     let result = []
     let response = await fetch(`${URL}?tipo=${tipo}&nombre=${nombre}&orden=${orden}`)
     if(response.ok){
@@ -18,14 +18,6 @@ const postMercaderia = async (body) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(body)
-        /*{
-            "nombre": "string",
-            "tipo": 0,
-            "precio": 0,
-            "ingredientes": "string",
-            "preparacion": "string",
-            "imagen": "string"
-        }*/
     }
     let response = await fetch(URL, init)
     if(response.ok){
@@ -51,14 +43,6 @@ const putMercaderia = async (id, body) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(body)
-        /*{
-            "nombre": "string",
-            "tipo": 0,
-            "precio": 0,
-            "ingredientes": "string",
-            "preparacion": "string",
-            "imagen": "string"
-        }*/
     }
     let response = await fetch(URL + id, init)
     if(response.ok){
@@ -77,36 +61,3 @@ const deleteMercaderia = async (id) => {
 }
 
 export { getMercaderias, postMercaderia, getMercaderia, putMercaderia, deleteMercaderia }
-
-/*
-GET
-[
-    {
-        "id": 21,
-        "nombre": "Agua",
-        "precio": 500,
-        "tipo": {
-            "id": 8,
-            "descripcion": "Bebidas"
-        },
-        "imagen": "http://drive.google.com/uc?export=view&id=1AT0FKcyPQ_YGsRma5Ngu6GX8ftf8Ywwd"
-    }
-]
-POST
-{
-    "id": 33,
-    "nombre": "Mantecol",
-    "tipo": {
-        "id": 10,
-        "descripcion": "Postres"
-    },
-    "precio": 220,
-    "ingredientes": "Manteca de mani",
-    "preparacion": "Georgalos",
-    "imagen": "img"
-}
-
-
-
-
-*/
