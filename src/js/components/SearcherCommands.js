@@ -1,4 +1,4 @@
-const SearcherCommands = () => {
+/*const SearcherCommands = () => {
 
     return  `
     <article class="modalDetail">
@@ -16,4 +16,4 @@ const SearcherCommands = () => {
 `
 }
 
-export default SearcherCommands; 
+export default SearcherCommands; */

@@ -1,5 +1,6 @@
 import getStorage from '../storage/getStorage.js';
 import setCounter from '../nav/setCounter.js';
+import setStorage from '../storage/setStorage.js';
 
 //AGREGAR PRODUCTO AL CARRITO
 const addMercaderiaToCart = (id) => {
@@ -25,7 +26,7 @@ const addMercaderiaToCart = (id) => {
 
     //contador en nav
     setCounter(selectedProduct.length)
-    localStorage.setItem('selectedProduct', JSON.stringify(selectedProduct));
+    setStorage(selectedProduct)
 }
 
 export default addMercaderiaToCart;

@@ -9,7 +9,7 @@ const openModalSearch = () => {
     background.className = 'background'
 
     section.innerHTML = Searcher()
-
+    
     onListItemClick(document.querySelectorAll('#modal__close'))
     onListItemClick(document.querySelectorAll('#button__search'))
 }

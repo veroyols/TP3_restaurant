@@ -1,11 +1,10 @@
 import { getMercaderias } from '../services/mercaderias.js';
 import Mercaderia from '../components/Mercaderia.js';
 import onListItemClick from "../listener/onListItemClick.js"
+import newCart from '../storage/newCart.js';
 
 const renderProducts = async () => {
-    localStorage.clear()
-    let selectedProduct = [];
-    localStorage.setItem('selectedProduct', JSON.stringify(selectedProduct));
+    newCart()
 
     let section = document.getElementById('allProducts');
     let mercaderias = await getMercaderias();

@@ -10,29 +10,20 @@ const searchItems = async () => {
     console.log('GET mercaderias')
     let allCommands = document.getElementById('allCommands');
     allCommands.innerHTML='';
-    
-    const filterByName = document.getElementById('searcher__name');
-    const name = filterByName.value;
-    console.log(name)
-    
-    const filterByType = document.getElementById('searcher__type');
-    const type = filterByType.value;
-    console.log(type)
 
+    const filterByName = document.getElementById('searcher__name');
+    const filterByType = document.getElementById('searcher__type');
     const filterByPrice = document.getElementById('searcher__order');
-    const order = filterByPrice.value;
-    console.log(order)
 
     showCommandAsideOff();
 
     let main = document.getElementById('allProducts');
-
     if(main.classList.contains('allProducts')){
         main.classList.remove('allProducts')
         main.classList.add('selectedProducts')
     }
     
-    const filtered = await getMercaderias(type, name, order);
+    const filtered = await getMercaderias(filterByType.value, filterByName.value, filterByPrice.value);
     console.log(filtered)
     
     main.innerHTML = '';

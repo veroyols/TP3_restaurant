@@ -1,13 +1,12 @@
 import newCart from "../storage/newCart.js";
 import setCounter from "../nav/setCounter.js";
+import getStorage from "../storage/getStorage.js";
 
 //LIMPIAR CARRITO
 const clearSelectedProducts = () => {
     if(document.querySelector('.mercaderia__add')) {
         //limpiar productos seleccionados
-        let storage = localStorage.getItem('selectedProduct');
-        let selectedProduct = JSON.parse(storage);
-
+        let selectedProduct = getStorage();
         for (let i = 0; i < selectedProduct.length; i++) { //codigo duplicado
             console.log('for')
             console.log(selectedProduct)

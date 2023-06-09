@@ -8,7 +8,7 @@ import addMercaderiaToCart from '../home/addMercaderiaToCart.js'
 import closeModal from '../Modal/closeModal.js'
 import openNextModal from '../Comandas/openNextModal.js'
 import createComanda from '../Comandas/createComanda.js'
-import searchItems from '../Ventas/searchItems.js'
+import searchItems from '../Mercaderias/searchItems.js'
 import searchCommands from '../Ventas/searchCommands.js'
 
 //CLICK
