@@ -222,7 +222,7 @@ html {
         position:fixed;
         margin: 0rem 10rem;
         border-radius: 30px;
-        padding: 50px 40px;
+        padding: 20px 40px 40px 90px;
         z-index: 4; 
         display: flex;
         justify-content: center; 
@@ -440,18 +440,18 @@ html {
         color: var(--header-title);
         background-color: var(--footer);
         padding-left: 5rem;
-        font-size: 13px;
+        font-size: 16px;
         padding-top: 2rem ;
     }
     footer .footer__text{
-        font-size: 10px;
+        font-size: 14px;
         color: var(--color-negro);
     }
     .footer ul {
         list-style: none;
     }
     .icons a{
-        font-size: 20px;
+        font-size: 30px;
     }
     .icons a i:hover {
         transform: scale(1.1);
@@ -622,8 +622,3 @@ html {
         cursor: pointer;
     }
 /* #endregion */
-
-/*#region FOOTER*/
-
-
-/*#endregion*/
