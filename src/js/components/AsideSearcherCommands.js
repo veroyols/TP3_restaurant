@@ -7,9 +7,9 @@ const AsideSearcherCommands = () => {
                 <input id="searcher__date" type="date"  >
             </form>
             <button id="button__searchCommands" title="Buscar">Buscar</button>
-            </div>
-            `
-        }
+        </div>
+    `
+}
         
 export default AsideSearcherCommands; 
 //<span class="validity"></span>

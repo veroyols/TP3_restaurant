@@ -24,11 +24,11 @@ const Footer = () => {
         </div>
         <div class="icons">
             <h3>Seguinos:</h3>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com/paulinacocina.net/?locale=es_LA" title="Ver promociones y recetas"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.linkedin.com/in/recetasargentinas/" title="Ver promociones y recetas"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/paulina_cocina?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" title="Ver promociones y recetas"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/fichinbar/?hl=es" title="Ver promociones y recetas"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@paulinacocina" title="Ver promociones y recetas"><i class="fab fa-youtube"></i></a>
         </div>
     </div>
     <div class="footer__footer">
