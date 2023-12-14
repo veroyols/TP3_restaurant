@@ -1,4 +1,6 @@
-const URL = 'https://localhost:7137/api/v1/Comanda';
+//const URL = 'https://localhost:7137/api/v1/Comanda';
+const URL = 'https://api-restaurant-sctc.onrender.com/api/v1/Comanda'
+
 
 const getComandas = async (date = '') => { 
     let result = []

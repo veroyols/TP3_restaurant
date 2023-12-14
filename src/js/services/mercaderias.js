@@ -1,4 +1,5 @@
-const URL = 'https://localhost:7137/api/v1/Mercaderia'
+//const URL = 'https://localhost:7137/api/v1/Mercaderia'
+const URL = 'https://api-restaurant-sctc.onrender.com/api/v1/Mercaderia'
 
 const getMercaderias = async (tipo = '', nombre = '', orden = '') => { 
     let result = []

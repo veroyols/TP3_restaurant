@@ -1,3 +1,4 @@
+/*
 import { getMercaderias, getMercaderia } from '../services/mercaderias.js';
 import { postComanda, getComandas } from '../services/comandas.js'
 import Mercaderia from '../components/section/Mercaderia.js';
@@ -368,6 +369,7 @@ const searchItems = async () => {
 }*/
 
 //RENDER COMANDAS
+/*
 const renderTodayComands = async () => { //+3h
     clicked('commands')
     //comandas de hoy 
@@ -405,3 +407,4 @@ const SearchCommands = async () => {
 
     onListItemClick(document.querySelectorAll('#button__searchCommands'))
 }
+*/
