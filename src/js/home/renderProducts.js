@@ -8,6 +8,7 @@ const renderProducts = async () => {
 
     let section = document.getElementById('allProducts');
     let mercaderias = await getMercaderias();
+    console.log(mercaderias);
     for (let i = 0; i < mercaderias.length; i++) {
         section.innerHTML += Mercaderia(mercaderias[i]);
     }

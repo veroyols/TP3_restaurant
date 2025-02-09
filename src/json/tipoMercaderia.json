@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "descripcion": "Entrada"
+    },
+    {
+        "id": 2,
+        "descripcion": "Minutas"
+    },
+    {
+        "id": 3,
+        "descripcion": "Pastas"
+    },
+    {
+        "id": 4,
+        "descripcion": "Parrilla"
+    },
+    {
+        "id": 5,
+        "descripcion": "Pizzas"
+    },
+    {
+        "id": 6,
+        "descripcion": "Sandwich"
+    },
+    {
+        "id": 7,
+        "descripcion": "Ensaladas"
+    },
+    {
+        "id": 8,
+        "descripcion": "Bebidas"
+    },
+    {
+        "id": 9,
+        "descripcion": "Cerveza Artesanal"
+    },
+    {
+        "id": 10,
+        "descripcion": "Postres"
+    }
+]
