@@ -37,6 +37,26 @@ const getMercaderias = async (tipo = '', nombre = '', orden = '') => {
     return result
 }
 
+const getMercaderia = async (id) => { 
+    console.log("clic")
+    console.log(id)
+    let result = []
+    let response = await fetch(URL, fetchOptions);
+    
+    if(response.ok){
+        let result = await response.json(); 
+        console.log("Datos recibidos:", result); 
+
+        //// JSON.DATA
+        if (id) {
+            let item = result.find(item => item.id === Number(id));
+            console.log(item);
+            return item 
+        }
+        //// JSON.DATA
+    }
+    return result
+}
 
 const postMercaderia = async (body) => {
     let result = []
@@ -55,14 +75,6 @@ const postMercaderia = async (body) => {
     return result
 }
 
-const getMercaderia = async (id) => { 
-    let result = []
-    let response = await fetch(URL+'/'+id)
-    if(response.ok){
-        result = await response.json()
-    }
-    return result
-}
 
 const putMercaderia = async (id, body) => {
     let result = []

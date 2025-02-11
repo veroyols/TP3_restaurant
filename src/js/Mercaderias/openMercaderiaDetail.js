@@ -5,6 +5,7 @@ import onListItemClick from "../listener/onListItemClick.js";
 //DETALLE DEL PRODUCTO
 const openMercaderiaDetail = async (id) => {
     let mercaderia = await getMercaderia(id);
+
     let section = document.getElementById('modalDetail');
     let background = document.getElementById('background');
     background.className = 'background';
