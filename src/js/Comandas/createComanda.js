@@ -1,4 +1,4 @@
-import { postComanda } from "../services/comandas.js";
+import { postComandaStorage } from "../services/comandas.js";
 import refresh from '../home/refresh.js';
 import ComandaTicket from "../components/ComandaTicket.js";
 import onListItemClick from "../listener/onListItemClick.js";
@@ -21,7 +21,8 @@ const createComanda = async () => {
         mercaderias: selectedProduct,
         formaEntrega: formaEntrega,
     }
-    let response = await postComanda(body)
+    //let response = await postComanda(body)
+    postComandaStorage(body)
     
     //limpiar
     refresh();

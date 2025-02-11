@@ -1,0 +1,260 @@
+[
+    {
+        "id": 1001,
+        "fecha": "11-02-2025",
+        "total": 3700,
+        "formaEntrega": {
+            "id": 1,
+            "descripcion": "Salon"
+        },
+        "mercaderias": 
+        [
+            {
+                "id": 1,
+                "nombre": "Berenjenas en Escabeche",
+                "tipo": 
+                {
+                    "id": 1,
+                    "descripcion": "Entrada"
+                },
+                "precio": 500,
+                "ingredientes": "Berenjenas, vinagre, aceite de oliva, ajo, laurel, orégano, pimentón, sal.",
+                "preparacion": "Cortar las berenjenas y colocarlas en una olla con vinagre y agua. Hervir y colocar las rodajas en un frasco de vidrio esterilizado. Cubrirlas con ajo picado y agregar sal y aceite a gusto. Dejar reposar durante 24 horas antes de consumir.",
+                "imagen": "https://i.ibb.co/9csGtkK/image.jpg"
+            },
+            {
+                "id": 4,
+                "nombre": "Milanesa Napolitana",
+                "tipo": 
+                {
+                    "id": 2,
+                    "descripcion": "Minutas"
+                },
+                "precio": 1500,
+                "ingredientes": "Carne de vaca, pan rallado, huevo, salsa de tomate, jamón, queso y aceite para freír.",
+                "preparacion": "Desgrasar la carne y dejar reposar en un recipiente con huevo batido, ajo, perejil, sal y pimienta. Pasar por pan rallado. Freír en aceite caliente hasta que esté dorado y crujiente. Cubrir con salsa de tomate, jamón y queso y hornear.",
+                "imagen": "https://i.ibb.co/XSC5P3M/image.jpg"
+            },
+            {
+                "id": 5,
+                "nombre": "Papas Fritas",
+                "tipo": 
+                {
+                    "id": 2,
+                    "descripcion": "Minutas"
+                },
+                "precio": 1000,
+                "ingredientes": "Papas, aceite y sal.",
+                "preparacion": "Pelar y cortar las papas en tiras delgadas. Freír en aceite caliente hasta que estén doradas y crujientes. Escurrir y salar al gusto.",
+                "imagen": "https://i.ibb.co/W2fWJ3b/image.jpg"
+            },
+            {
+                "id": 27,
+                "nombre": "Honey",
+                "tipo": {
+                    "id": 9,
+                    "descripcion": "Cervezas"
+                },
+                "precio": 700,
+                "ingredientes": "Maltas oscuras, lupulos amargos, agua y miel.",
+                "preparacion": "Se mezclan los ingredientes en agua caliente para producir mosto. Luego se agrega levadura para la fermentación, y después de algunos días, se empaqueta en barriles para la carbonatación. Finalmente, se enfría y se sirve.",
+                "imagen": "https://i.ibb.co/KrBnctH/image.jpg"
+            }
+        ]
+
+    },
+    {
+        "id": 1002,
+        "fecha": "11-02-2025",
+        "total": 5000,
+        "formaEntrega": {
+            "id": 1,
+            "descripcion": "Salon"
+        },
+        "mercaderias": 
+        [
+            {
+                "id": 10,
+                "nombre": "Ñoquis con Salsa Bolognesa",
+                "tipo": {
+                    "id": 3,
+                    "descripcion": "Pastas"
+                },
+                "precio": 2500,
+                "ingredientes": "Ñoquis, carne picada, cebolla, ajo, tomate, aceite, albahaca, sal y pimienta.",
+                "preparacion": "Dorar el ajo y agregar cebolla en aceite hasta dorar. Agregar la carne. Agregar tomate picado, albahaca y dejar reducir. Cocinar a fuego bajo. Servir sobre los ñoquis.",
+                "imagen": "https://i.ibb.co/Lkz3QnZ/image.jpg"
+            },
+            {
+                "id": 22,
+                "nombre": "Agua con Gas",
+                "tipo": {
+                    "id": 8,
+                    "descripcion": "Bebidas"
+                },
+                "precio": 500,
+                "ingredientes": "Agua con gas.",
+                "preparacion": "Servir en un vaso.",
+                "imagen": "https://i.ibb.co/svz8cZh/image.jpg"
+            },
+            {
+                "id": 25,
+                "nombre": "Vino",
+                "tipo": {
+                    "id": 8,
+                    "descripcion": "Bebidas"
+                },
+                "precio": 2000,
+                "ingredientes": "Vino de la casa.",
+                "preparacion": "Servir en una copa.",
+                "imagen": "https://i.ibb.co/qxyZvdN/image.jpg"
+            }
+        ]
+    },
+    {
+        "id": 1003,
+        "fecha": "11-02-2025",
+        "total": 1000,
+        "formaEntrega": {
+            "id": 1,
+            "descripcion": "Salon"
+        },
+        "mercaderias": 
+        [
+            {
+                "id": 14,
+                "nombre": "Parrillada para 2",
+                "tipo": {
+                    "id": 4,
+                    "descripcion": "Parrilla"
+                },
+                "precio": 3000,
+                "ingredientes": "Asado, vacío, chorizo, morcilla, chinchulines, riñones, mollejas, sal y limón.",
+                "preparacion": "Salar la carne y cocinar en la parrilla a fuego medio. Servir.",
+                "imagen": "https://i.ibb.co/X8jxHqV/image.jpg"
+            },
+            {
+                "id": 23,
+                "nombre": "Coca-Cola",
+                "tipo": {
+                    "id": 8,
+                    "descripcion": "Bebidas"
+                },
+                "precio": 700,
+                "ingredientes": "Coca-Cola.",
+                "preparacion": "Servir en un vaso.",
+                "imagen": "https://i.ibb.co/HBbZYmD/image.jpg"
+            },
+            {
+                "id": 25,
+                "nombre": "Vino",
+                "tipo": 
+                {
+                    "id": 8,
+                    "descripcion": "Bebidas"
+                },
+                "precio": 2000,
+                "ingredientes": "Vino de la casa.",
+                "preparacion": "Servir en una copa.",
+                "imagen": "https://i.ibb.co/qxyZvdN/image.jpg"
+            }
+        ]
+    },
+    {
+        "id": 1004,
+        "fecha": "11-02-2025",
+        "total": 1000,
+        "formaEntrega": 
+        {
+            "id": 1,
+            "descripcion": "Salon"
+        },
+        "mercaderias": 
+        [
+            {
+                "id": 16,
+                "nombre": "Napolitana",
+                "tipo": {
+                    "id": 5,
+                    "descripcion": "Pizzas"
+                },
+                "precio": 2500,
+                "ingredientes": "Harina, levadura, aceite y sal. Tomate, ajo, albahaca, queso muzzarella, aceitunas.",
+                "preparacion": "Levar levadura con agua tibia. Añadir a recipiente con harina y sal. Amasar y dejar reposar untada en aceite. Formar bollos y reposar. Precocinar en parrilla. Agregar salsa, queso y hornear. Añadir tomate, ajo, albahaca, aceitunas. Servir.",
+                "imagen": "https://i.ibb.co/xCyjZ4L/image.jpg"
+            },
+            {
+                "id": 24,
+                "nombre": "Agua Tónica",
+                "tipo": {
+                    "id": 8,
+                    "descripcion": "Bebidas"
+                },
+                "precio": 700,
+                "ingredientes": "Agua tónica.",
+                "preparacion": "Servir en un vaso.",
+                "imagen": "https://i.ibb.co/ZWz4gc9/image.jpg"
+            }
+        ]
+    },
+    {
+        "id": 1005,
+        "fecha": "11-02-2025",
+        "total": 1000,
+        "formaEntrega": {
+            "id": 1,
+            "descripcion": "Salon"
+        },
+        "mercaderias": 
+        [
+            {
+                "id": 18,
+                "nombre": "Fugazetta Rellena",
+                "tipo": {
+                    "id": 5,
+                    "descripcion": "Pizzas"
+                },
+                "precio": 3200,
+                "ingredientes": "Harina, levadura, aceite y sal. Queso muzzarella, jamón cocido, cebolla.",
+                "preparacion": "Levar la levadura con agua tibia. Agregar harina y sal. Amasar y dejar reposar la masa en aceite tapada. Formar bollos y dejar reposar. Extender masa en bandeja. Agregar jamón y queso. Tapar con masa y cebolla. Hornear y servir.",
+                "imagen": "https://i.ibb.co/yYrBzDK/image.jpg"
+            },
+            {
+                "id": 19,
+                "nombre": "Hamburguesa",
+                "tipo": {
+                    "id": 6,
+                    "descripcion": "Hamburguesas"
+                },
+                "precio": 1000,
+                "ingredientes": "Pan de hamburguesa, carne picada, lechuga, tomate, cebolla, queso cheddar.",
+                "preparacion": "Mezclar carne picada, ajo, perejil, sal, pimienta, huevo. Formar bolitas con pan rallado. Aplastar y cocinar en parrilla o sartén. Agregar cheddar y dar vuelta. Armar hamburguesa con carne, lechuga, tomate y cebolla en pan.",
+                "imagen": "https://i.ibb.co/LvCv8xk/image.jpg"
+            },
+            {
+                "id": 28,
+                "nombre": "Scottish",
+                "tipo": {
+                    "id": 9,
+                    "descripcion": "Cervezas"
+                },
+                "precio": 700,
+                "ingredientes": "Maltas palidas, lupulos fuertes y agua.",
+                "preparacion": "Se mezclan los ingredientes en agua caliente para producir mosto. Luego se agrega levadura para la fermentación, y después de algunos días, se empaqueta en barriles para la carbonatación. Finalmente, se enfría y se sirve.",
+                "imagen": "https://i.ibb.co/ZL6j5wN/image.jpg"
+            },
+            {
+                "id": 32,
+                "nombre": "Frutillas con Crema",
+                "tipo": {
+                    "id": 10,
+                    "descripcion": "Postres"
+                },
+                "precio": 800,
+                "ingredientes": "Frutillas, crema batida, azúcar.",
+                "preparacion": "Cortar las frutillas, agregar azúcar y dejar reposar. Servir con crema batida.",
+                "imagen": "https://i.ibb.co/hdSjB77/image.jpg"
+            }   
+        ]
+    }
+]
